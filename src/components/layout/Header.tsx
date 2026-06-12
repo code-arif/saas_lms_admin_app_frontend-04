@@ -2,6 +2,7 @@ import { Bell, Search, User, Moon, Sun, Menu } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useAuthStore } from '@/features/auth/store/authStore';
 import { useUIStore } from '@/store/uiStore';
+import { ThemeSwitcher } from '@/components/common/ThemeSwitcher';
 import { Button } from '@/components/ui/Button';
 import {
   DropdownMenu,
@@ -37,6 +38,8 @@ const Header = () => {
       </div>
 
       <div className="flex items-center gap-2 md:gap-4">
+        <ThemeSwitcher />
+
         <Button
           variant="ghost"
           size="icon"

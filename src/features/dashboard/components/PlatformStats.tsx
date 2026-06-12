@@ -25,6 +25,7 @@ const PlatformStats = ({ totalTenants, mrr, activeSubscriptions, totalStudents }
           title={card.title}
           value={card.value}
           icon={card.icon}
+          gradient
         />
       ))}
     </div>

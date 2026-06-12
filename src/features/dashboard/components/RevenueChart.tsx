@@ -44,13 +44,18 @@ const RevenueChart = ({ data }: RevenueChartProps) => {
               contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))' }}
               formatter={(value) => [`$${Number(value)}`, 'Revenue']}
             />
+            <defs>
+              <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#10b981" stopOpacity={0.4} />
+                <stop offset="100%" stopColor="#10b981" stopOpacity={0.05} />
+              </linearGradient>
+            </defs>
             <Area
               type="monotone"
               dataKey="amount"
-              stroke="hsl(var(--primary))"
-              fill="hsl(var(--primary))"
-              fillOpacity={0.2}
-              strokeWidth={2}
+              stroke="#10b981"
+              fill="url(#revenueGradient)"
+              strokeWidth={3}
             />
           </AreaChart>
         </ResponsiveContainer>

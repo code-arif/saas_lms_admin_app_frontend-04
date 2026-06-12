@@ -1,6 +1,5 @@
-import { Building2, DollarSign, Users, GraduationCap, Plus, Tag } from 'lucide-react';
+import { Plus, Tag, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import PageTitle from '@/components/common/PageTitle';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -11,7 +10,7 @@ import RecentTenants from '@/features/dashboard/components/RecentTenants';
 import { useDashboard } from '@/features/dashboard/hooks/useDashboard';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
-const COLORS = ['#22c55e', '#3b82f6', '#ef4444', '#a855f7'];
+const COLORS = ['#10b981', '#3b82f6', '#ef4444', '#8b5cf6'];
 
 const DashboardPage = () => {
   const { data: response, isLoading } = useDashboard();
@@ -24,23 +23,41 @@ const DashboardPage = () => {
 
   return (
     <div className="space-y-8">
-      <PageTitle
-        title="Dashboard"
-        subtitle="Platform overview and key metrics"
+      {/* Hero Banner */}
+      <div
+        className="relative overflow-hidden rounded-2xl p-8"
+        style={{ background: `linear-gradient(to bottom right, hsl(var(--theme-banner-from)), hsl(var(--theme-banner-via)), hsl(var(--theme-banner-to)))` }}
       >
-        <Link to="/plans/create">
-          <Button size="sm">
-            <Plus className="h-4 w-4 mr-2" />
-            Create Plan
-          </Button>
-        </Link>
-        <Link to="/coupons">
-          <Button size="sm" variant="outline">
-            <Tag className="h-4 w-4 mr-2" />
-            Manage Coupons
-          </Button>
-        </Link>
-      </PageTitle>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDYpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWJpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-1/2 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: `hsl(var(--theme-banner-to) / 0.15)` }} />
+        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="text-white space-y-2">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5" style={{ color: `hsl(var(--theme-banner-to))` }} />
+              <span className="text-sm font-medium tracking-wide uppercase" style={{ color: `hsl(var(--theme-banner-to) / 0.85)` }}>Platform Overview</span>
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+            <p className="max-w-xl" style={{ color: `hsl(var(--theme-banner-to) / 0.85)` }}>
+              Monitor your platform health, track revenue growth, and manage tenants at a glance.
+            </p>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link to="/plans/create">
+              <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm">
+                <Plus className="h-4 w-4 mr-2" />
+                Create Plan
+              </Button>
+            </Link>
+            <Link to="/coupons">
+              <Button size="sm" variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:text-white">
+                <Tag className="h-4 w-4 mr-2" />
+                Manage Coupons
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <PlatformStats
         totalTenants={stats?.total_tenants || 0}
