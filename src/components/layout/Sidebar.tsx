@@ -8,19 +8,16 @@ import {
   Megaphone,
   BarChart3,
   Settings,
-  LogOut,
   ChevronLeft,
   ChevronRight,
   X,
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
-import { useAuthStore } from '@/features/auth/store/authStore';
 import { useUIStore } from '@/store/uiStore';
 
 const Sidebar = () => {
   const { sidebarCollapsed: collapsed, toggleSidebar } = useUIStore();
   const location = useLocation();
-  const logout = useAuthStore((state) => state.logout);
 
   const menuItems = [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
@@ -98,18 +95,6 @@ const Sidebar = () => {
             );
           })}
         </nav>
-
-        <div className="absolute bottom-4 left-0 w-full px-4">
-          <button
-            onClick={logout}
-            className={cn(
-              'flex items-center gap-3 px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors'
-            )}
-          >
-            <LogOut size={20} />
-            {!collapsed && <span>Logout</span>}
-          </button>
-        </div>
       </aside>
     </>
   );

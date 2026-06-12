@@ -1,5 +1,6 @@
-import { Bell, Search, User, Moon, Sun, Menu } from 'lucide-react';
+import { Bell, Search, User, Moon, Sun, Menu, Settings, LogOut } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/features/auth/store/authStore';
 import { useUIStore } from '@/store/uiStore';
 import { ThemeSwitcher } from '@/components/common/ThemeSwitcher';
@@ -8,13 +9,21 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/DropdownMenu';
 
 const Header = () => {
   const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
   const { theme, setTheme } = useTheme();
   const toggleSidebar = useUIStore((state) => state.toggleSidebar);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-card px-3 md:px-8">
@@ -68,25 +77,57 @@ const Header = () => {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <div className="flex items-center gap-2 pl-2 md:pl-4 border-l">
-          <div className="text-right hidden md:block">
-            <p className="text-sm font-medium leading-none">{user?.name}</p>
-            <p className="text-xs text-muted-foreground mt-1 capitalize">
-              {user?.role?.replace('_', ' ')}
-            </p>
-          </div>
-          <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-muted flex items-center justify-center overflow-hidden border">
-            {user?.avatar ? (
-              <img
-                src={user.avatar}
-                alt={user.name}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <User size={16} className="md:h-5 md:w-5 text-muted-foreground" />
-            )}
-          </div>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="flex items-center gap-2 pl-2 md:pl-4 border-l hover:opacity-80 transition-opacity">
+              <div className="text-right hidden md:block">
+                <p className="text-sm font-medium leading-none">{user?.name}</p>
+                <p className="text-xs text-muted-foreground mt-1 capitalize">
+                  {user?.role?.replace('_', ' ')}
+                </p>
+              </div>
+              <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-muted flex items-center justify-center overflow-hidden border shrink-0">
+                {user?.avatar ? (
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <User size={16} className="md:h-5 md:w-5 text-muted-foreground" />
+                )}
+              </div>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-48">
+            <div className="px-3 py-2 border-b">
+              <p className="text-sm font-medium">{user?.name}</p>
+              <p className="text-xs text-muted-foreground capitalize">
+                {user?.role?.replace('_', ' ')}
+              </p>
+            </div>
+            <DropdownMenuItem asChild>
+              <Link to="/settings" className="flex items-center gap-3 cursor-pointer">
+                <User size={16} />
+                Profile
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/settings" className="flex items-center gap-3 cursor-pointer">
+                <Settings size={16} />
+                Settings
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={handleLogout}
+              className="flex items-center gap-3 text-destructive focus:text-destructive cursor-pointer"
+            >
+              <LogOut size={16} />
+              Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
