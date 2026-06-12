@@ -18,6 +18,7 @@ import CampaignsPage from '@/pages/campaigns/CampaignsPage';
 import AnalyticsPage from '@/pages/analytics/AnalyticsPage';
 import SettingsPage from '@/pages/settings/SettingsPage';
 import ProfilePage from '@/pages/profile/ProfilePage';
+import LearnersPage from '@/pages/learners/LearnersPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
               {
                 path: 'profile',
                 element: <ProfilePage />,
+              },
+              {
+                path: 'learners',
+                element: <LearnersPage />,
               },
             ],
           },

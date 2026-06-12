@@ -118,15 +118,38 @@ const Sidebar = () => {
           {!collapsed && <div className="border-t my-3" />}
 
           {/* Extra buttons */}
-          {extraItems.map((item) => (
-            <button
-              key={item.label}
-              className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-            >
-              <item.icon size={20} className="shrink-0" />
-              {!collapsed && <span>{item.label}</span>}
-            </button>
-          ))}
+          {extraItems.map((item) => {
+            const href = item.label === 'Learners' ? '/learners' : undefined;
+            const isActive = href ? location.pathname === href : false;
+            return href ? (
+              <Link
+                key={item.label}
+                to={href}
+                onClick={() => {
+                  if (window.innerWidth < 768 && !collapsed) {
+                    toggleSidebar();
+                  }
+                }}
+                className={cn(
+                  'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
+                  isActive
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                )}
+              >
+                <item.icon size={20} className="shrink-0" />
+                {!collapsed && <span>{item.label}</span>}
+              </Link>
+            ) : (
+              <button
+                key={item.label}
+                className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              >
+                <item.icon size={20} className="shrink-0" />
+                {!collapsed && <span>{item.label}</span>}
+              </button>
+            );
+          })}
 
           {/* Classes dropdown */}
           {!collapsed ? (
