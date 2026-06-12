@@ -12,4 +12,5 @@ export const ROUTES = {
   CAMPAIGNS: '/campaigns',
   ANALYTICS: '/analytics',
   SETTINGS: '/settings',
+  PROFILE: '/profile',
 } as const;

@@ -107,7 +107,7 @@ const Header = () => {
               </p>
             </div>
             <DropdownMenuItem asChild>
-              <Link to="/settings" className="flex items-center gap-3 cursor-pointer">
+              <Link to="/profile" className="flex items-center gap-3 cursor-pointer">
                 <User size={16} />
                 Profile
               </Link>

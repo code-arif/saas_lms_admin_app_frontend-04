@@ -17,6 +17,7 @@ import CouponsPage from '@/pages/coupons/CouponsPage';
 import CampaignsPage from '@/pages/campaigns/CampaignsPage';
 import AnalyticsPage from '@/pages/analytics/AnalyticsPage';
 import SettingsPage from '@/pages/settings/SettingsPage';
+import ProfilePage from '@/pages/profile/ProfilePage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
               {
                 path: 'settings',
                 element: <SettingsPage />,
+              },
+              {
+                path: 'profile',
+                element: <ProfilePage />,
               },
             ],
           },
