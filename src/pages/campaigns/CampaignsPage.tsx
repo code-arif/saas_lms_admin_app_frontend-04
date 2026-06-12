@@ -42,7 +42,7 @@ const CampaignsPage = () => {
       />
 
       <Dialog open={showForm} onOpenChange={(open) => { setShowForm(open); if (!open) setEditUuid(null); }}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-full sm:max-w-2xl mx-4 sm:mx-0">
           <DialogHeader>
             <DialogTitle>{editUuid ? 'Edit Campaign' : 'Create Campaign'}</DialogTitle>
           </DialogHeader>

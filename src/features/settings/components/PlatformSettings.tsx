@@ -57,7 +57,7 @@ const PlatformSettings = ({ settings, onSubmit, isLoading }: PlatformSettingsPro
           <CardDescription>Configure your platform's general settings</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="platform_name">Platform Name</Label>
               <Input id="platform_name" {...register('platform_name')} />
@@ -81,7 +81,7 @@ const PlatformSettings = ({ settings, onSubmit, isLoading }: PlatformSettingsPro
           <CardTitle>Regional Settings</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="default_currency">Default Currency</Label>
               <Input id="default_currency" {...register('default_currency')} />
@@ -95,7 +95,7 @@ const PlatformSettings = ({ settings, onSubmit, isLoading }: PlatformSettingsPro
           </div>
           <div className="space-y-2">
             <Label htmlFor="trial_days_default">Default Trial Days</Label>
-            <Input id="trial_days_default" type="number" {...register('trial_days_default', { valueAsNumber: true })} className="w-32" />
+            <Input id="trial_days_default" type="number" {...register('trial_days_default', { valueAsNumber: true })} className="w-full sm:w-32" />
           </div>
         </CardContent>
       </Card>

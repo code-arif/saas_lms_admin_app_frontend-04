@@ -47,7 +47,7 @@ const CouponForm = ({ onSubmit, isLoading }: CouponFormProps) => {
           <CardTitle>Coupon Details</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="code">Coupon Code</Label>
               <Input id="code" {...register('code')} placeholder="e.g., SAVE20" className="uppercase" />
@@ -67,7 +67,7 @@ const CouponForm = ({ onSubmit, isLoading }: CouponFormProps) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="discount_value">Discount Value</Label>
               <Input id="discount_value" type="number" step="0.01" {...register('discount_value', { valueAsNumber: true })} />

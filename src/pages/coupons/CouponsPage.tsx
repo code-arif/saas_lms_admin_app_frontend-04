@@ -35,7 +35,7 @@ const CouponsPage = () => {
       <CouponTable coupons={coupons} onDelete={setDeleteUuid} />
 
       <Dialog open={showCreate} onOpenChange={setShowCreate}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-full sm:max-w-2xl mx-4 sm:mx-0">
           <DialogHeader>
             <DialogTitle>Create Coupon</DialogTitle>
           </DialogHeader>

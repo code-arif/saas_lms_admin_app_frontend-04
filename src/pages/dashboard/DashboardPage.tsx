@@ -25,7 +25,7 @@ const DashboardPage = () => {
     <div className="space-y-8">
       {/* Hero Banner */}
       <div
-        className="relative overflow-hidden rounded-2xl p-8"
+        className="relative overflow-hidden rounded-2xl p-6 md:p-8"
         style={{ background: `linear-gradient(to bottom right, hsl(var(--theme-banner-from)), hsl(var(--theme-banner-via)), hsl(var(--theme-banner-to)))` }}
       >
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDYpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWJpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
@@ -37,12 +37,12 @@ const DashboardPage = () => {
               <Sparkles className="h-5 w-5" style={{ color: `hsl(var(--theme-banner-to))` }} />
               <span className="text-sm font-medium tracking-wide uppercase" style={{ color: `hsl(var(--theme-banner-to) / 0.85)` }}>Platform Overview</span>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-            <p className="max-w-xl" style={{ color: `hsl(var(--theme-banner-to) / 0.85)` }}>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Dashboard</h1>
+            <p className="max-w-xl text-sm md:text-base" style={{ color: `hsl(var(--theme-banner-to) / 0.85)` }}>
               Monitor your platform health, track revenue growth, and manage tenants at a glance.
             </p>
           </div>
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 shrink-0">
             <Link to="/plans/create">
               <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm">
                 <Plus className="h-4 w-4 mr-2" />

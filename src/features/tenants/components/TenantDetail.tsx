@@ -31,7 +31,7 @@ const TenantDetail = ({ tenant, onSuspend, onDelete }: TenantDetailProps) => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-muted-foreground">Name</p>
               <p className="font-medium">{tenant.name}</p>
@@ -69,7 +69,7 @@ const TenantDetail = ({ tenant, onSuspend, onDelete }: TenantDetailProps) => {
             <CardTitle>Current Subscription</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <p className="text-sm text-muted-foreground">Plan</p>
                 <p className="font-medium">{tenant.subscription.plan_name}</p>
@@ -99,33 +99,33 @@ const TenantDetail = ({ tenant, onSuspend, onDelete }: TenantDetailProps) => {
           <CardTitle>Usage Statistics</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="flex items-center gap-3">
-              <Users className="h-8 w-8 text-muted-foreground" />
-              <div>
-                <p className="text-2xl font-bold">{tenant.students_count || 0}</p>
-                <p className="text-sm text-muted-foreground">Students</p>
+              <Users className="h-6 w-6 md:h-8 md:w-8 text-muted-foreground shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xl md:text-2xl font-bold">{tenant.students_count || 0}</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Students</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <BookOpen className="h-8 w-8 text-muted-foreground" />
-              <div>
-                <p className="text-2xl font-bold">{tenant.courses_count || 0}</p>
-                <p className="text-sm text-muted-foreground">Courses</p>
+              <BookOpen className="h-6 w-6 md:h-8 md:w-8 text-muted-foreground shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xl md:text-2xl font-bold">{tenant.courses_count || 0}</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Courses</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <GraduationCap className="h-8 w-8 text-muted-foreground" />
-              <div>
-                <p className="text-2xl font-bold">{tenant.instructors_count || 0}</p>
-                <p className="text-sm text-muted-foreground">Instructors</p>
+              <GraduationCap className="h-6 w-6 md:h-8 md:w-8 text-muted-foreground shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xl md:text-2xl font-bold">{tenant.instructors_count || 0}</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Instructors</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <HardDrive className="h-8 w-8 text-muted-foreground" />
-              <div>
-                <p className="text-2xl font-bold">{tenant.storage_used || 0} MB</p>
-                <p className="text-sm text-muted-foreground">Storage Used</p>
+              <HardDrive className="h-6 w-6 md:h-8 md:w-8 text-muted-foreground shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xl md:text-2xl font-bold">{tenant.storage_used || 0} MB</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Storage Used</p>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ const TenantDetail = ({ tenant, onSuspend, onDelete }: TenantDetailProps) => {
           <CardTitle className="text-destructive">Danger Zone</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             {tenant.status !== 'suspended' && (
               <Button variant="outline" onClick={onSuspend}>
                 <Ban className="h-4 w-4 mr-2" />

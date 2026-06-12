@@ -21,7 +21,7 @@ const AnalyticsPage = () => {
     <div className="space-y-6">
       <PageTitle title="Analytics" subtitle="Platform analytics and insights">
         <Select value={period} onValueChange={setPeriod}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-full sm:w-[180px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

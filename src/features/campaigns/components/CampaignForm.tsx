@@ -53,7 +53,7 @@ const CampaignForm = ({ initialData, onSubmit, isLoading }: CampaignFormProps) =
           <CardTitle>Campaign Details</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">Campaign Name</Label>
               <Input id="name" {...register('name')} placeholder="e.g., Summer Sale" />
@@ -81,7 +81,7 @@ const CampaignForm = ({ initialData, onSubmit, isLoading }: CampaignFormProps) =
             <Input id="coupon_code" {...register('coupon_code')} placeholder="e.g., SUMMER20" className="uppercase" />
             {errors.coupon_code && <p className="text-sm text-destructive">{errors.coupon_code.message}</p>}
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="start_date">Start Date</Label>
               <Input id="start_date" type="date" {...register('start_date')} />

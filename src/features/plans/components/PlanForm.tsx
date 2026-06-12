@@ -79,7 +79,7 @@ const PlanForm = ({ initialData, onSubmit, isLoading }: PlanFormProps) => {
           <CardTitle>Basic Information</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">Plan Name</Label>
               <Input id="name" {...register('name')} placeholder="e.g., Pro Plan" />
@@ -103,7 +103,7 @@ const PlanForm = ({ initialData, onSubmit, isLoading }: PlanFormProps) => {
           <CardTitle>Pricing</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="monthly_price">Monthly Price ($)</Label>
               <Input id="monthly_price" type="number" step="0.01" {...register('monthly_price', { valueAsNumber: true })} />
@@ -123,7 +123,7 @@ const PlanForm = ({ initialData, onSubmit, isLoading }: PlanFormProps) => {
           <CardTitle>Limits</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="student_limit">Student Limit</Label>
               <Input id="student_limit" type="number" {...register('student_limit', { valueAsNumber: true })} />
@@ -143,7 +143,7 @@ const PlanForm = ({ initialData, onSubmit, isLoading }: PlanFormProps) => {
           </div>
           <div className="space-y-2">
             <Label htmlFor="trial_days">Trial Days</Label>
-            <Input id="trial_days" type="number" {...register('trial_days', { valueAsNumber: true })} className="w-32" />
+            <Input id="trial_days" type="number" {...register('trial_days', { valueAsNumber: true })} className="w-full sm:w-32" />
           </div>
         </CardContent>
       </Card>

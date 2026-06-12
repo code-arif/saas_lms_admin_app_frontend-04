@@ -48,7 +48,7 @@ const Sidebar = () => {
         className={cn(
           'fixed left-0 top-0 z-40 h-screen border-r bg-card transition-all duration-300',
           collapsed ? 'w-20' : 'w-64',
-          'max-md:translate-x-0'
+          collapsed ? '-translate-x-full md:translate-x-0' : 'translate-x-0'
         )}
       >
         <div className="flex h-16 items-center justify-between px-4 border-b">
