@@ -42,13 +42,13 @@ const userManagementItems: { label: string; icon: ComponentType<{ size?: number;
   { label: 'Permissions', icon: Shield },
 ];
 
-const settingsItems: { label: string; icon: ComponentType<{ size?: number; className?: string }> }[] = [
-  { label: 'Profile Settings', icon: UserCog },
-  { label: 'Payment Settings', icon: Wallet },
-  { label: 'General Settings', icon: SlidersHorizontal },
-  { label: 'Region Settings', icon: Globe },
-  { label: 'System Settings', icon: Cpu },
-  { label: 'Environment Settings', icon: Cloud },
+const settingsItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
+  { label: 'Profile Settings', icon: UserCog, href: '/profile' },
+  { label: 'Payment Settings', icon: Wallet, href: '/settings/payment' },
+  { label: 'General Settings', icon: SlidersHorizontal, href: '/settings/general' },
+  { label: 'Region Settings', icon: Globe, href: '/settings/region' },
+  { label: 'System Settings', icon: Cpu, href: '/settings/system' },
+  { label: 'Environment Settings', icon: Cloud, href: '/settings/environment' },
 ];
 
 const Sidebar = () => {
@@ -79,7 +79,7 @@ const Sidebar = () => {
     DropdownIcon: ComponentType<{ size?: number; className?: string }>,
     isOpen: boolean,
     onToggle: () => void,
-    items: { label: string; icon?: ComponentType<{ size?: number; className?: string }> }[]
+    items: { label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string }[]
   ) => {
     if (!collapsed) {
       return (
@@ -102,19 +102,44 @@ const Sidebar = () => {
           </button>
           {isOpen && (
             <div className="ml-8 mt-1 space-y-0.5">
-              {items.map((item) => (
-                <button
-                  key={item.label}
-                  className="flex items-center gap-2 px-3 py-1.5 w-full rounded-md text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                >
-                  {item.icon ? (
-                    <item.icon size={14} className="shrink-0" />
-                  ) : (
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-muted-foreground/40" />
-                  )}
-                  <span>{item.label}</span>
-                </button>
-              ))}
+              {items.map((item) =>
+                item.href ? (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    onClick={() => {
+                      if (window.innerWidth < 768 && !collapsed) {
+                        toggleSidebar();
+                      }
+                    }}
+                    className={cn(
+                      'flex items-center gap-2 px-3 py-1.5 w-full rounded-md text-sm transition-colors',
+                      location.pathname === item.href
+                        ? 'bg-primary/10 text-primary font-medium'
+                        : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    )}
+                  >
+                    {item.icon ? (
+                      <item.icon size={14} className="shrink-0" />
+                    ) : (
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-muted-foreground/40" />
+                    )}
+                    <span>{item.label}</span>
+                  </Link>
+                ) : (
+                  <button
+                    key={item.label}
+                    className="flex items-center gap-2 px-3 py-1.5 w-full rounded-md text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                  >
+                    {item.icon ? (
+                      <item.icon size={14} className="shrink-0" />
+                    ) : (
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-muted-foreground/40" />
+                    )}
+                    <span>{item.label}</span>
+                  </button>
+                )
+              )}
             </div>
           )}
         </div>

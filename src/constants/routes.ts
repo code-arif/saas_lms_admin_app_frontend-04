@@ -12,5 +12,10 @@ export const ROUTES = {
   CAMPAIGNS: '/campaigns',
   ANALYTICS: '/analytics',
   SETTINGS: '/settings',
+  SETTINGS_GENERAL: '/settings/general',
+  SETTINGS_REGION: '/settings/region',
+  SETTINGS_SYSTEM: '/settings/system',
+  SETTINGS_PAYMENT: '/settings/payment',
+  SETTINGS_ENVIRONMENT: '/settings/environment',
   PROFILE: '/profile',
 } as const;

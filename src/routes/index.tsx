@@ -17,6 +17,11 @@ import CouponsPage from '@/pages/coupons/CouponsPage';
 import CampaignsPage from '@/pages/campaigns/CampaignsPage';
 import AnalyticsPage from '@/pages/analytics/AnalyticsPage';
 import SettingsPage from '@/pages/settings/SettingsPage';
+import GeneralSettingsPage from '@/pages/settings/GeneralSettingsPage';
+import RegionSettingsPage from '@/pages/settings/RegionSettingsPage';
+import SystemSettingsPage from '@/pages/settings/SystemSettingsPage';
+import PaymentSettingsPage from '@/pages/settings/PaymentSettingsPage';
+import EnvironmentSettingsPage from '@/pages/settings/EnvironmentSettingsPage';
 import ProfilePage from '@/pages/profile/ProfilePage';
 import LearnersPage from '@/pages/learners/LearnersPage';
 import NotFoundPage from '@/pages/NotFoundPage';
@@ -93,6 +98,26 @@ export const router = createBrowserRouter([
               {
                 path: 'settings',
                 element: <SettingsPage />,
+              },
+              {
+                path: 'settings/general',
+                element: <GeneralSettingsPage />,
+              },
+              {
+                path: 'settings/region',
+                element: <RegionSettingsPage />,
+              },
+              {
+                path: 'settings/system',
+                element: <SystemSettingsPage />,
+              },
+              {
+                path: 'settings/payment',
+                element: <PaymentSettingsPage />,
+              },
+              {
+                path: 'settings/environment',
+                element: <EnvironmentSettingsPage />,
               },
               {
                 path: 'profile',
