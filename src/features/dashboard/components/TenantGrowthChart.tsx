@@ -39,17 +39,17 @@ const TenantGrowthChart = ({ data }: TenantGrowthChartProps) => {
             />
             <defs>
               <linearGradient id="growthGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#10b981" stopOpacity={0.3} />
-                <stop offset="100%" stopColor="#10b981" stopOpacity={0} />
+                <stop offset="0%" stopColor={`hsl(var(--theme-accent))`} stopOpacity={0.3} />
+                <stop offset="100%" stopColor={`hsl(var(--theme-accent))`} stopOpacity={0} />
               </linearGradient>
             </defs>
             <Line
               type="monotone"
               dataKey="count"
-              stroke="#10b981"
+              stroke={`hsl(var(--theme-accent))`}
               strokeWidth={3}
-              dot={{ fill: '#10b981', strokeWidth: 2, stroke: 'hsl(var(--card))', r: 5 }}
-              activeDot={{ r: 7, fill: '#10b981', stroke: 'hsl(var(--card))', strokeWidth: 3 }}
+              dot={{ fill: `hsl(var(--theme-accent))`, strokeWidth: 2, stroke: 'hsl(var(--card))', r: 5 }}
+              activeDot={{ r: 7, fill: `hsl(var(--theme-accent))`, stroke: 'hsl(var(--card))', strokeWidth: 3 }}
             />
           </LineChart>
         </ResponsiveContainer>

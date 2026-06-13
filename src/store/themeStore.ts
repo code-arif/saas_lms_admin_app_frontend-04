@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type ThemeMode = 'purple' | 'green' | 'blue' | 'rose' | 'teal';
+export type ThemeMode = 'purple' | 'green' | 'blue' | 'rose' | 'teal' | 'copper';
 
 interface ThemeState {
   theme: ThemeMode;

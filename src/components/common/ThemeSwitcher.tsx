@@ -15,6 +15,7 @@ const themes: { mode: ThemeMode; label: string; color: string }[] = [
   { mode: 'blue', label: 'Blue', color: '#2563eb' },
   { mode: 'rose', label: 'Rose', color: '#e11d48' },
   { mode: 'teal', label: 'Teal', color: '#0d9488' },
+  { mode: 'copper', label: 'Copper', color: '#B29172' },
 ];
 
 export const ThemeSwitcher = () => {

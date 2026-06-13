@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ComponentType } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -17,6 +17,15 @@ import {
   ChevronRight,
   ChevronDown,
   X,
+  Shield,
+  UserCog,
+  KeyRound,
+  UserCheck,
+  Wallet,
+  Globe,
+  Cpu,
+  SlidersHorizontal,
+  Cloud,
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { useUIStore } from '@/store/uiStore';
@@ -27,10 +36,27 @@ const classItems = [
   { label: 'Running Classes' },
 ];
 
+const userManagementItems: { label: string; icon: ComponentType<{ size?: number; className?: string }> }[] = [
+  { label: 'Users', icon: UserCheck },
+  { label: 'Role', icon: KeyRound },
+  { label: 'Permissions', icon: Shield },
+];
+
+const settingsItems: { label: string; icon: ComponentType<{ size?: number; className?: string }> }[] = [
+  { label: 'Profile Settings', icon: UserCog },
+  { label: 'Payment Settings', icon: Wallet },
+  { label: 'General Settings', icon: SlidersHorizontal },
+  { label: 'Region Settings', icon: Globe },
+  { label: 'System Settings', icon: Cpu },
+  { label: 'Environment Settings', icon: Cloud },
+];
+
 const Sidebar = () => {
   const { sidebarCollapsed: collapsed, toggleSidebar } = useUIStore();
   const location = useLocation();
   const [classesOpen, setClassesOpen] = useState(true);
+  const [userMgmtOpen, setUserMgmtOpen] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(true);
 
   const menuItems = [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
@@ -40,7 +66,6 @@ const Sidebar = () => {
     { label: 'Coupons', icon: Tag, href: '/coupons' },
     { label: 'Campaigns', icon: Megaphone, href: '/campaigns' },
     { label: 'Analytics', icon: BarChart3, href: '/analytics' },
-    { label: 'Settings', icon: Settings, href: '/settings' },
   ];
 
   const extraItems = [
@@ -48,6 +73,60 @@ const Sidebar = () => {
     { label: 'Assets', icon: FolderOpen },
     { label: 'Manage AI', icon: Bot },
   ];
+
+  const renderDropdown = (
+    label: string,
+    DropdownIcon: ComponentType<{ size?: number; className?: string }>,
+    isOpen: boolean,
+    onToggle: () => void,
+    items: { label: string; icon?: ComponentType<{ size?: number; className?: string }> }[]
+  ) => {
+    if (!collapsed) {
+      return (
+        <div>
+          <button
+            onClick={onToggle}
+            className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <DropdownIcon size={20} className="shrink-0" />
+              <span>{label}</span>
+            </div>
+            <ChevronDown
+              size={16}
+              className={cn(
+                'transition-transform duration-200',
+                isOpen ? 'rotate-0' : '-rotate-90'
+              )}
+            />
+          </button>
+          {isOpen && (
+            <div className="ml-8 mt-1 space-y-0.5">
+              {items.map((item) => (
+                <button
+                  key={item.label}
+                  className="flex items-center gap-2 px-3 py-1.5 w-full rounded-md text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                >
+                  {item.icon ? (
+                    <item.icon size={14} className="shrink-0" />
+                  ) : (
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-muted-foreground/40" />
+                  )}
+                  <span>{item.label}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <button className="flex items-center justify-center px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+        <DropdownIcon size={20} className="shrink-0" />
+      </button>
+    );
+  };
 
   return (
     <>
@@ -62,12 +141,13 @@ const Sidebar = () => {
 
       <aside
         className={cn(
-          'fixed left-0 top-0 z-40 h-screen border-r bg-card transition-all duration-300 overflow-y-auto',
+          'fixed left-0 top-0 z-40 h-screen border-r bg-card transition-all duration-300 flex flex-col',
           collapsed ? 'w-20' : 'w-64',
           collapsed ? '-translate-x-full md:translate-x-0' : 'translate-x-0'
         )}
       >
-        <div className="flex h-16 items-center justify-between px-4 border-b">
+        {/* Header */}
+        <div className="flex h-16 items-center justify-between px-4 border-b shrink-0">
           {!collapsed && (
             <span className="text-xl font-bold">LMS Admin</span>
           )}
@@ -86,112 +166,86 @@ const Sidebar = () => {
           </button>
         </div>
 
-        <nav className="p-4 space-y-2">
-          {menuItems.map((item) => {
-            const isActive =
-              location.pathname === item.href ||
-              (item.href !== '/dashboard' &&
-                location.pathname.startsWith(item.href));
-            return (
-              <Link
-                key={item.href}
-                to={item.href}
-                onClick={() => {
-                  if (window.innerWidth < 768 && !collapsed) {
-                    toggleSidebar();
-                  }
-                }}
-                className={cn(
-                  'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
-                  isActive
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                )}
-              >
-                <item.icon size={20} />
-                {!collapsed && <span>{item.label}</span>}
-              </Link>
-            );
-          })}
-
-          {/* Divider */}
-          {!collapsed && <div className="border-t my-3" />}
-
-          {/* Extra buttons */}
-          {extraItems.map((item) => {
-            const href = item.label === 'Learners' ? '/learners' : undefined;
-            const isActive = href ? location.pathname === href : false;
-            return href ? (
-              <Link
-                key={item.label}
-                to={href}
-                onClick={() => {
-                  if (window.innerWidth < 768 && !collapsed) {
-                    toggleSidebar();
-                  }
-                }}
-                className={cn(
-                  'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
-                  isActive
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                )}
-              >
-                <item.icon size={20} className="shrink-0" />
-                {!collapsed && <span>{item.label}</span>}
-              </Link>
-            ) : (
-              <button
-                key={item.label}
-                className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-              >
-                <item.icon size={20} className="shrink-0" />
-                {!collapsed && <span>{item.label}</span>}
-              </button>
-            );
-          })}
-
-          {/* Classes dropdown */}
-          {!collapsed ? (
-            <div>
-              <button
-                onClick={() => setClassesOpen(!classesOpen)}
-                className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <BookOpen size={20} className="shrink-0" />
-                  <span>Classes</span>
-                </div>
-                <ChevronDown
-                  size={16}
+        {/* Scrollable nav area */}
+        <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+          <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+            {/* Main nav items */}
+            {menuItems.map((item) => {
+              const isActive =
+                location.pathname === item.href ||
+                (item.href !== '/dashboard' &&
+                  location.pathname.startsWith(item.href));
+              return (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  onClick={() => {
+                    if (window.innerWidth < 768 && !collapsed) {
+                      toggleSidebar();
+                    }
+                  }}
                   className={cn(
-                    'transition-transform duration-200',
-                    classesOpen ? 'rotate-0' : '-rotate-90'
+                    'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
+                    isActive
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                   )}
-                />
-              </button>
-              {classesOpen && (
-                <div className="ml-8 mt-1 space-y-0.5">
-                  {classItems.map((item) => (
-                    <button
-                      key={item.label}
-                      className="flex items-center gap-2 px-3 py-1.5 w-full rounded-md text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                    >
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-muted-foreground/40" />
-                      <span>{item.label}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : (
-            <button
-              className="flex items-center justify-center px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-            >
-              <BookOpen size={20} className="shrink-0" />
-            </button>
-          )}
-        </nav>
+                >
+                  <item.icon size={20} />
+                  {!collapsed && <span>{item.label}</span>}
+                </Link>
+              );
+            })}
+
+            {/* Divider */}
+            {!collapsed && <div className="border-t my-3" />}
+
+            {/* Extra buttons */}
+            {extraItems.map((item) => {
+              const href = item.label === 'Learners' ? '/learners' : undefined;
+              const isActive = href ? location.pathname === href : false;
+              return href ? (
+                <Link
+                  key={item.label}
+                  to={href}
+                  onClick={() => {
+                    if (window.innerWidth < 768 && !collapsed) {
+                      toggleSidebar();
+                    }
+                  }}
+                  className={cn(
+                    'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
+                    isActive
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                  )}
+                >
+                  <item.icon size={20} className="shrink-0" />
+                  {!collapsed && <span>{item.label}</span>}
+                </Link>
+              ) : (
+                <button
+                  key={item.label}
+                  className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                >
+                  <item.icon size={20} className="shrink-0" />
+                  {!collapsed && <span>{item.label}</span>}
+                </button>
+              );
+            })}
+
+            {/* Classes dropdown */}
+            {renderDropdown('Classes', BookOpen, classesOpen, () => setClassesOpen(!classesOpen), classItems)}
+
+            {/* User Management dropdown */}
+            {renderDropdown('User Management', UserCog, userMgmtOpen, () => setUserMgmtOpen(!userMgmtOpen), userManagementItems)}
+          </nav>
+
+          {/* Bottom section - Settings pinned to bottom */}
+          <div className="border-t shrink-0 p-4 space-y-2">
+            {renderDropdown('Settings', Settings, settingsOpen, () => setSettingsOpen(!settingsOpen), settingsItems)}
+          </div>
+        </div>
       </aside>
     </>
   );

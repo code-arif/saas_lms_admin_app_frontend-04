@@ -285,3 +285,53 @@ html.theme-transitioning *::after {
   --theme-banner-to: 173 70% 52%;
   --theme-accent: 173 70% 42%;
 }
+
+/* Copper - warm copper/terracotta (#B29172) */
+[data-theme="copper"] {
+  --background: 30 20% 97%;
+  --foreground: 30 50% 10%;
+  --card-foreground: 30 50% 10%;
+  --popover-foreground: 30 50% 10%;
+  --primary: 28 55% 42%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 30 25% 91%;
+  --secondary-foreground: 30 50% 28%;
+  --muted: 30 20% 95%;
+  --muted-foreground: 30 18% 43%;
+  --accent: 30 30% 91%;
+  --accent-foreground: 30 50% 28%;
+  --border: 30 20% 84%;
+  --input: 30 20% 84%;
+  --ring: 28 55% 55%;
+  /* Theme accent variables - copper */
+  --theme-banner-from: 28 55% 36%;
+  --theme-banner-via: 29 50% 46%;
+  --theme-banner-to: 30 45% 60%;
+  --theme-accent: 29 50% 46%;
+}
+.dark[data-theme="copper"] {
+  --background: 30 55% 4%;
+  --foreground: 30 18% 88%;
+  --card: 30 50% 6%;
+  --card-foreground: 30 18% 88%;
+  --popover: 30 50% 6%;
+  --popover-foreground: 30 18% 88%;
+  --primary: 28 50% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 30 30% 13%;
+  --secondary-foreground: 30 18% 88%;
+  --muted: 30 25% 10%;
+  --muted-foreground: 30 15% 52%;
+  --accent: 30 30% 16%;
+  --accent-foreground: 30 18% 88%;
+  --destructive: 0 65% 22%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 30 30% 16%;
+  --input: 30 30% 16%;
+  --ring: 28 50% 48%;
+  /* Theme accent variables - dark copper */
+  --theme-banner-from: 28 50% 33%;
+  --theme-banner-via: 29 45% 42%;
+  --theme-banner-to: 30 40% 56%;
+  --theme-accent: 29 45% 42%;
+}
