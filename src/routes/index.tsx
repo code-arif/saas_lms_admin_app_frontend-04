@@ -27,6 +27,7 @@ import LearnersPage from '@/pages/learners/LearnersPage';
 import UsersPage from '@/pages/users/UsersPage';
 import RolesPage from '@/pages/roles/RolesPage';
 import PermissionsPage from '@/pages/permissions/PermissionsPage';
+import AssetsPage from '@/pages/assets/AssetsPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -141,6 +142,10 @@ export const router = createBrowserRouter([
               {
                 path: 'learners',
                 element: <LearnersPage />,
+              },
+              {
+                path: 'assets',
+                element: <AssetsPage />,
               },
             ],
           },

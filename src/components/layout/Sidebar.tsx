@@ -68,9 +68,9 @@ const Sidebar = () => {
     { label: 'Analytics', icon: BarChart3, href: '/analytics' },
   ];
 
-  const extraItems = [
-    { label: 'Learners', icon: GraduationCap },
-    { label: 'Assets', icon: FolderOpen },
+  const extraItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
+    { label: 'Learners', icon: GraduationCap, href: '/learners' },
+    { label: 'Assets', icon: FolderOpen, href: '/assets' },
     { label: 'Manage AI', icon: Bot },
   ];
 
@@ -227,7 +227,7 @@ const Sidebar = () => {
 
             {/* Extra buttons */}
             {extraItems.map((item) => {
-              const href = item.label === 'Learners' ? '/learners' : undefined;
+              const href = item.href ? item.href : undefined;
               const isActive = href ? location.pathname === href : false;
               return href ? (
                 <Link
@@ -275,5 +275,4 @@ const Sidebar = () => {
     </>
   );
 };
-
 export default Sidebar;

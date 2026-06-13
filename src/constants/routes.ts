@@ -20,5 +20,6 @@ export const ROUTES = {
   USERS: '/users',
   ROLES: '/roles',
   PERMISSIONS: '/permissions',
+  ASSETS: '/assets',
   PROFILE: '/profile',
 } as const;
