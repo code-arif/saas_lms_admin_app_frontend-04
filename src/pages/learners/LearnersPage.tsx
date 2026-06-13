@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/Dialog';
-import { Plus, Eye, Trash2, GraduationCap } from 'lucide-react';
+import { Plus, Eye, Pencil, Trash2, GraduationCap } from 'lucide-react';
 import { formatDate } from '@/utils/formatDate';
 
 interface Learner {
@@ -116,6 +116,7 @@ const statusVariant = (status: string) => {
 const LearnersPage = () => {
   const [learners, setLearners] = useState<Learner[]>(mockLearners);
   const [addOpen, setAddOpen] = useState(false);
+  const [editingLearner, setEditingLearner] = useState<Learner | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -135,12 +136,38 @@ const LearnersPage = () => {
     };
     setLearners((prev) => [newLearner, ...prev]);
     setAddOpen(false);
+    setEditingLearner(null);
     setFormData({ name: '', email: '', status: 'active' });
   };
 
   const openAddDialog = () => {
     setFormData({ name: '', email: '', status: 'active' });
+    setEditingLearner(null);
     setAddOpen(true);
+  };
+
+  const openEditDialog = (learner: Learner) => {
+    setFormData({
+      name: learner.name,
+      email: learner.email,
+      status: learner.status,
+    });
+    setEditingLearner(learner);
+    setAddOpen(true);
+  };
+
+  const handleUpdateLearner = () => {
+    if (!editingLearner) return;
+    setLearners((prev) =>
+      prev.map((l) =>
+        l.id === editingLearner.id
+          ? { ...l, name: formData.name, email: formData.email, status: formData.status }
+          : l
+      )
+    );
+    setAddOpen(false);
+    setEditingLearner(null);
+    setFormData({ name: '', email: '', status: 'active' });
   };
 
   const columns = [
@@ -203,13 +230,21 @@ const LearnersPage = () => {
     {
       key: 'actions',
       header: 'Actions',
-      className: 'w-[100px]',
+      className: 'w-[130px]',
       render: (item: Learner) => (
         <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" title="View learner">
             <Eye className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => openEditDialog(item)}
+            title="Edit learner"
+          >
+            <Pencil className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="icon" title="Delete learner">
             <Trash2 className="h-4 w-4 text-destructive" />
           </Button>
         </div>
@@ -226,14 +261,20 @@ const LearnersPage = () => {
         </Button>
       </PageTitle>
 
-      {/* Add Learner Modal */}
-      <Dialog open={addOpen} onOpenChange={setAddOpen}>
+      {/* Add / Edit Learner Modal */}
+      <Dialog open={addOpen} onOpenChange={(open) => {
+        if (!open) {
+          setEditingLearner(null);
+          setFormData({ name: '', email: '', status: 'active' });
+        }
+        setAddOpen(open);
+      }}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Add Learner</DialogTitle>
-            <DialogDescription>
-              Create a new learner account on the platform.
-            </DialogDescription>
+          <DialogTitle>{editingLearner ? 'Edit Learner' : 'Add Learner'}</DialogTitle>
+          <DialogDescription>
+            {editingLearner ? 'Update the learner account details.' : 'Create a new learner account on the platform.'}
+          </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
@@ -272,14 +313,18 @@ const LearnersPage = () => {
               </Select>
             </div>
             <div className="flex justify-end gap-3 pt-2">
-              <Button variant="outline" onClick={() => setAddOpen(false)}>
+              <Button variant="outline" onClick={() => {
+                setAddOpen(false);
+                setEditingLearner(null);
+                setFormData({ name: '', email: '', status: 'active' });
+              }}>
                 Cancel
               </Button>
               <Button
-                onClick={handleAddLearner}
+                onClick={editingLearner ? handleUpdateLearner : handleAddLearner}
                 disabled={!formData.name || !formData.email}
               >
-                Add Learner
+                {editingLearner ? 'Update Learner' : 'Add Learner'}
               </Button>
             </div>
           </div>
