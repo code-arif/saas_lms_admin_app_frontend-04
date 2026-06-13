@@ -28,6 +28,8 @@ import UsersPage from '@/pages/users/UsersPage';
 import RolesPage from '@/pages/roles/RolesPage';
 import PermissionsPage from '@/pages/permissions/PermissionsPage';
 import AssetsPage from '@/pages/assets/AssetsPage';
+import ClassesPage from '@/pages/classes/ClassesPage';
+import ClassViewPage from '@/pages/classes/ClassViewPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -146,6 +148,14 @@ export const router = createBrowserRouter([
               {
                 path: 'assets',
                 element: <AssetsPage />,
+              },
+              {
+                path: 'classes',
+                element: <ClassesPage />,
+              },
+              {
+                path: 'classes/:uuid',
+                element: <ClassViewPage />,
               },
             ],
           },

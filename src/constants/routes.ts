@@ -21,5 +21,7 @@ export const ROUTES = {
   ROLES: '/roles',
   PERMISSIONS: '/permissions',
   ASSETS: '/assets',
+  CLASSES: '/classes',
+  CLASS_VIEW: '/classes/:uuid',
   PROFILE: '/profile',
 } as const;

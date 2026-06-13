@@ -30,8 +30,8 @@ import {
 import { cn } from '@/utils/cn';
 import { useUIStore } from '@/store/uiStore';
 
-const classItems = [
-  { label: 'All Classes' },
+const classItems: { label: string; href?: string }[] = [
+  { label: 'All Classes', href: '/classes' },
   { label: 'Previous Classes' },
   { label: 'Running Classes' },
 ];
