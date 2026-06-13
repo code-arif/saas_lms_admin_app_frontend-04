@@ -13,6 +13,7 @@ import {
   FolderOpen,
   Bot,
   BookOpen,
+  Library,
   ChevronLeft,
   ChevronRight,
   ChevronDown,
@@ -70,6 +71,7 @@ const Sidebar = () => {
 
   const extraItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
     { label: 'Learners', icon: GraduationCap, href: '/learners' },
+    { label: 'Courses', icon: Library, href: '/courses' },
     { label: 'Assets', icon: FolderOpen, href: '/assets' },
     { label: 'Manage AI', icon: Bot },
   ];

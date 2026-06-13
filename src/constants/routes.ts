@@ -23,5 +23,7 @@ export const ROUTES = {
   ASSETS: '/assets',
   CLASSES: '/classes',
   CLASS_VIEW: '/classes/:uuid',
+  COURSES: '/courses',
+  COURSE_DETAIL: '/courses/:uuid',
   PROFILE: '/profile',
 } as const;
