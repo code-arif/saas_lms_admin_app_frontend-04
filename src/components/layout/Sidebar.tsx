@@ -32,8 +32,8 @@ import { useUIStore } from '@/store/uiStore';
 
 const classItems: { label: string; href?: string }[] = [
   { label: 'All Classes', href: '/classes' },
-  { label: 'Previous Classes' },
-  { label: 'Running Classes' },
+  { label: 'Previous Classes', href: '/classes/previous' },
+  { label: 'Running Classes', href: '/classes/running' },
 ];
 
 const userManagementItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
