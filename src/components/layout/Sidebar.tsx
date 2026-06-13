@@ -38,8 +38,8 @@ const classItems = [
 
 const userManagementItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
   { label: 'Users', icon: UserCheck, href: '/users' },
-  { label: 'Role', icon: KeyRound },
-  { label: 'Permissions', icon: Shield },
+  { label: 'Role', icon: KeyRound, href: '/roles' },
+  { label: 'Permissions', icon: Shield, href: '/permissions' },
 ];
 
 const settingsItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [

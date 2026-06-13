@@ -25,6 +25,8 @@ import EnvironmentSettingsPage from '@/pages/settings/EnvironmentSettingsPage';
 import ProfilePage from '@/pages/profile/ProfilePage';
 import LearnersPage from '@/pages/learners/LearnersPage';
 import UsersPage from '@/pages/users/UsersPage';
+import RolesPage from '@/pages/roles/RolesPage';
+import PermissionsPage from '@/pages/permissions/PermissionsPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -127,6 +129,14 @@ export const router = createBrowserRouter([
               {
                 path: 'users',
                 element: <UsersPage />,
+              },
+              {
+                path: 'roles',
+                element: <RolesPage />,
+              },
+              {
+                path: 'permissions',
+                element: <PermissionsPage />,
               },
               {
                 path: 'learners',

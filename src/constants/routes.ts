@@ -18,5 +18,7 @@ export const ROUTES = {
   SETTINGS_PAYMENT: '/settings/payment',
   SETTINGS_ENVIRONMENT: '/settings/environment',
   USERS: '/users',
+  ROLES: '/roles',
+  PERMISSIONS: '/permissions',
   PROFILE: '/profile',
 } as const;
