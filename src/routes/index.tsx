@@ -24,6 +24,7 @@ import PaymentSettingsPage from '@/pages/settings/PaymentSettingsPage';
 import EnvironmentSettingsPage from '@/pages/settings/EnvironmentSettingsPage';
 import ProfilePage from '@/pages/profile/ProfilePage';
 import LearnersPage from '@/pages/learners/LearnersPage';
+import UsersPage from '@/pages/users/UsersPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -122,6 +123,10 @@ export const router = createBrowserRouter([
               {
                 path: 'profile',
                 element: <ProfilePage />,
+              },
+              {
+                path: 'users',
+                element: <UsersPage />,
               },
               {
                 path: 'learners',

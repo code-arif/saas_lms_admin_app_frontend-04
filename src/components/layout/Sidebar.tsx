@@ -36,8 +36,8 @@ const classItems = [
   { label: 'Running Classes' },
 ];
 
-const userManagementItems: { label: string; icon: ComponentType<{ size?: number; className?: string }> }[] = [
-  { label: 'Users', icon: UserCheck },
+const userManagementItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
+  { label: 'Users', icon: UserCheck, href: '/users' },
   { label: 'Role', icon: KeyRound },
   { label: 'Permissions', icon: Shield },
 ];
