@@ -57,7 +57,7 @@ const PlanFeatureEditor = ({ features, onChange }: PlanFeatureEditorProps) => {
           onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
         />
         <Button type="button" variant="outline" onClick={addFeature}>
-          <Plus className="h-4 w-4 mr-2" />
+          <Plus className="h-4 w-4" />
           Add
         </Button>
       </div>

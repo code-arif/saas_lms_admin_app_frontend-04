@@ -30,7 +30,7 @@ const CampaignsPage = () => {
     <div className="space-y-6">
       <PageTitle title="Campaigns" subtitle="Manage marketing campaigns">
         <Button size="sm" onClick={() => setShowForm(true)}>
-          <Plus className="h-4 w-4 mr-2" />
+          <Plus className="h-4 w-4" />
           Create Campaign
         </Button>
       </PageTitle>

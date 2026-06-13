@@ -45,13 +45,13 @@ const DashboardPage = () => {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 shrink-0">
             <Link to="/plans/create">
               <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm">
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="h-4 w-4" />
                 Create Plan
               </Button>
             </Link>
             <Link to="/coupons">
               <Button size="sm" variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:text-white">
-                <Tag className="h-4 w-4 mr-2" />
+                <Tag className="h-4 w-4" />
                 Manage Coupons
               </Button>
             </Link>

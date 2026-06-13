@@ -27,7 +27,7 @@ const CouponsPage = () => {
     <div className="space-y-6">
       <PageTitle title="Coupons" subtitle="Manage discount coupons">
         <Button size="sm" onClick={() => setShowCreate(true)}>
-          <Plus className="h-4 w-4 mr-2" />
+          <Plus className="h-4 w-4" />
           Create Coupon
         </Button>
       </PageTitle>
