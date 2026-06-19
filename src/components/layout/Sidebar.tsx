@@ -1,4 +1,4 @@
-import { useState, type ComponentType } from 'react';
+import { useState, useEffect, type ComponentType } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -27,6 +27,10 @@ import {
   Cpu,
   SlidersHorizontal,
   Cloud,
+  Tags,
+  BookMarked,
+  FileText,
+  Video,
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { useUIStore } from '@/store/uiStore';
@@ -43,6 +47,18 @@ const userManagementItems: { label: string; icon: ComponentType<{ size?: number;
   { label: 'Permissions', icon: Shield, href: '/permissions' },
 ];
 
+const manageTagsItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
+  { label: 'Course Categories', icon: BookMarked, href: '/courses/categories' },
+];
+
+const coursesItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
+  { label: 'All Courses', icon: Library, href: '/courses' },
+  { label: 'Modules', icon: BookMarked, href: '/courses/modules' },
+  { label: 'Assignments', icon: FileText, href: '/courses/assignments' },
+  { label: 'Recording', icon: Video, href: '/courses/recording' },
+  { label: 'Assets', icon: FolderOpen, href: '/courses/assets' },
+];
+
 const settingsItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
   { label: 'Profile Settings', icon: UserCog, href: '/profile' },
   { label: 'Payment Settings', icon: Wallet, href: '/settings/payment' },
@@ -52,12 +68,39 @@ const settingsItems: { label: string; icon: ComponentType<{ size?: number; class
   { label: 'Environment Settings', icon: Cloud, href: '/settings/environment' },
 ];
 
+const routeGroups = [
+  { name: 'classes', paths: ['/classes'] },
+  { name: 'manageTags', paths: ['/courses/categories'] },
+  { name: 'courses', paths: ['/courses'] },
+  { name: 'userMgmt', paths: ['/users', '/roles', '/permissions'] },
+  { name: 'settings', paths: ['/profile', '/settings'] },
+] as const;
+
+const getActiveGroup = (pathname: string): string | null => {
+  const group = routeGroups.find((g) =>
+    g.paths.some((p) => pathname === p || pathname.startsWith(p + '/'))
+  );
+  return group?.name ?? null;
+};
+
 const Sidebar = () => {
   const { sidebarCollapsed: collapsed, toggleSidebar } = useUIStore();
   const location = useLocation();
-  const [classesOpen, setClassesOpen] = useState(true);
-  const [userMgmtOpen, setUserMgmtOpen] = useState(true);
-  const [settingsOpen, setSettingsOpen] = useState(true);
+  const [classesOpen, setClassesOpen] = useState(false);
+  const [userMgmtOpen, setUserMgmtOpen] = useState(false);
+  const [manageTagsOpen, setManageTagsOpen] = useState(false);
+  const [coursesOpen, setCoursesOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  // Auto-expand only the active dropdown when navigating — collapse the rest
+  useEffect(() => {
+    const activeGroup = getActiveGroup(location.pathname);
+    setClassesOpen(activeGroup === 'classes');
+    setManageTagsOpen(activeGroup === 'manageTags');
+    setCoursesOpen(activeGroup === 'courses');
+    setUserMgmtOpen(activeGroup === 'userMgmt');
+    setSettingsOpen(activeGroup === 'settings');
+  }, [location.pathname]);
 
   const menuItems = [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
@@ -71,7 +114,6 @@ const Sidebar = () => {
 
   const extraItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
     { label: 'Learners', icon: GraduationCap, href: '/learners' },
-    { label: 'Courses', icon: Library, href: '/courses' },
     { label: 'Assets', icon: FolderOpen, href: '/assets' },
     { label: 'Manage AI', icon: Bot },
   ];
@@ -226,6 +268,12 @@ const Sidebar = () => {
 
             {/* Divider */}
             {!collapsed && <div className="border-t my-3" />}
+
+            {/* Manage Tags dropdown */}
+            {renderDropdown('Manage Tags', Tags, manageTagsOpen, () => setManageTagsOpen(!manageTagsOpen), manageTagsItems)}
+
+            {/* Courses dropdown */}
+            {renderDropdown('Courses', Library, coursesOpen, () => setCoursesOpen(!coursesOpen), coursesItems)}
 
             {/* Extra buttons */}
             {extraItems.map((item) => {

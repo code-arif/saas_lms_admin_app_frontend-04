@@ -4,7 +4,7 @@ import type { ApiResponse } from '@/types/global.types';
 
 export const authService = {
   login: async (credentials: LoginCredentials): Promise<LoginResponse> => {
-    return api.post('/auth/admin/login', credentials);
+    return api.post('/auth/super_admin/login', credentials);
   },
 
   getMe: async (): Promise<ApiResponse> => {

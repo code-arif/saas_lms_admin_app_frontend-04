@@ -34,6 +34,7 @@ import PreviousClassesPage from '@/pages/classes/PreviousClassesPage';
 import RunningClassesPage from '@/pages/classes/RunningClassesPage';
 import CoursesPage from '@/pages/courses/CoursesPage';
 import CourseDetailPage from '@/pages/courses/CourseDetailPage';
+import CourseCategoriesPage from '@/pages/courses/CourseCategoriesPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -172,6 +173,10 @@ export const router = createBrowserRouter([
               {
                 path: 'courses',
                 element: <CoursesPage />,
+              },
+              {
+                path: 'courses/categories',
+                element: <CourseCategoriesPage />,
               },
               {
                 path: 'courses/:uuid',
