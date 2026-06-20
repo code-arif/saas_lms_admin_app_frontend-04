@@ -31,6 +31,7 @@ import {
   BookMarked,
   FileText,
   Video,
+  Headphones,
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { useUIStore } from '@/store/uiStore';
@@ -110,6 +111,7 @@ const Sidebar = () => {
     { label: 'Coupons', icon: Tag, href: '/coupons' },
     { label: 'Campaigns', icon: Megaphone, href: '/campaigns' },
     { label: 'Analytics', icon: BarChart3, href: '/analytics' },
+  { label: 'Support', icon: Headphones, href: '/support' },
   ];
 
   const extraItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [

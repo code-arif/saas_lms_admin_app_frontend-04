@@ -11,6 +11,11 @@ export const courseCategoryService = {
     return api.get('/course-categories/tree');
   },
 
+  /** Fetch all categories (no pagination) for the parent category dropdown */
+  getAllForDropdown: async (): Promise<PaginatedResponse<CourseCategory>> => {
+    return api.get('/course-categories', { params: { per_page: 1000, page: 1 } });
+  },
+
   getByUuid: async (uuid: string): Promise<ApiResponse<CourseCategory>> => {
     return api.get(`/course-categories/${uuid}`);
   },

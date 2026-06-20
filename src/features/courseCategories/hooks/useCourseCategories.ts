@@ -17,6 +17,15 @@ export const useCourseCategoryTree = () => {
   });
 };
 
+/** Fetch all categories (no pagination) for parent category dropdown */
+export const useCourseCategoryDropdown = () => {
+  return useQuery({
+    queryKey: ['courseCategories', 'dropdown'],
+    queryFn: () => courseCategoryService.getAllForDropdown(),
+    staleTime: 5 * 60 * 1000, // 5 min cache — dropdown data doesn't change often
+  });
+};
+
 export const useCourseCategory = (uuid: string) => {
   return useQuery({
     queryKey: ['courseCategory', uuid],

@@ -3,12 +3,12 @@ import PageTitle from '@/components/common/PageTitle';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import ConfirmDialog from '@/components/common/ConfirmDialog';
 import { Button } from '@/components/ui/Button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/Dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/Dialog';
 import CourseCategoryTable from '@/features/courseCategories/components/CourseCategoryTable';
 import CourseCategoryForm from '@/features/courseCategories/components/CourseCategoryForm';
 import {
   useCourseCategories,
-  useCourseCategoryTree,
+  useCourseCategoryDropdown,
   useCreateCourseCategory,
   useUpdateCourseCategory,
   useDeleteCourseCategory,
@@ -36,7 +36,7 @@ const CourseCategoriesPage = () => {
     is_active: activeFilter === 'all' ? undefined : activeFilter === 'active',
   });
 
-  const { data: treeResponse } = useCourseCategoryTree();
+  const { data: dropdownResponse, isLoading: isDropdownLoading } = useCourseCategoryDropdown();
   const createMutation = useCreateCourseCategory();
   const updateMutation = useUpdateCourseCategory();
   const deleteMutation = useDeleteCourseCategory();
@@ -45,11 +45,15 @@ const CourseCategoriesPage = () => {
   const categories = response?.data || [];
   const pagination = response?.pagination;
 
-  // Build parent options from tree data for the form
-  const parentOptions = (treeResponse?.data || []).map((cat: CourseCategory) => ({
-    label: cat.name,
-    value: cat.id,
-  }));
+  // Build parent options from the dropdown API (all categories, no pagination)
+  // This is more reliable than the tree endpoint which may not exist on the backend
+  const dropdownData = dropdownResponse?.data ?? [];
+  const parentOptions = Array.isArray(dropdownData)
+    ? dropdownData.map((cat: CourseCategory) => ({
+        label: cat.name,
+        value: cat.id,
+      }))
+    : [];
 
   const handleCreate = (data: CourseCategoryFormData) => {
     createMutation.mutate(data, {
@@ -124,6 +128,11 @@ const CourseCategoriesPage = () => {
         <DialogContent className="max-w-full sm:max-w-2xl mx-4 sm:mx-0 max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{editingCategory ? 'Edit Category' : 'Create Category'}</DialogTitle>
+            <DialogDescription>
+              {editingCategory
+                ? 'Update the category details below.'
+                : 'Fill in the details to create a new course category. Optionally, assign a parent category to create a subcategory.'}
+            </DialogDescription>
           </DialogHeader>
           <CourseCategoryForm
             initialData={editingCategory}
@@ -131,6 +140,7 @@ const CourseCategoriesPage = () => {
             mode={editingCategory ? 'edit' : 'create'}
             onSubmit={editingCategory ? handleUpdate : handleCreate}
             isLoading={createMutation.isPending || updateMutation.isPending}
+            isDropdownLoading={isDropdownLoading}
           />
         </DialogContent>
       </Dialog>
