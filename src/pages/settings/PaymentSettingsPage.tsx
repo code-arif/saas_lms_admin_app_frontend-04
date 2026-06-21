@@ -27,7 +27,9 @@ const PaymentSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <CreditCard size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <CreditCard size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Payment Gateway</CardTitle>
                 <CardDescription>Configure your primary payment processor</CardDescription>
@@ -70,7 +72,9 @@ const PaymentSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <DollarSign size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <DollarSign size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Billing Preferences</CardTitle>
                 <CardDescription>Set default billing behavior</CardDescription>
@@ -118,7 +122,9 @@ const PaymentSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Percent size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Percent size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Tax & Fees</CardTitle>
                 <CardDescription>Configure tax rates and additional fees</CardDescription>
