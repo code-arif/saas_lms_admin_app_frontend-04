@@ -25,6 +25,11 @@ import RegionSettingsPage from '@/pages/settings/RegionSettingsPage';
 import SystemSettingsPage from '@/pages/settings/SystemSettingsPage';
 import PaymentSettingsPage from '@/pages/settings/PaymentSettingsPage';
 import EnvironmentSettingsPage from '@/pages/settings/EnvironmentSettingsPage';
+import EmailSettingsPage from '@/pages/settings/EmailSettingsPage';
+import IntegrationsSettingsPage from '@/pages/settings/IntegrationsSettingsPage';
+import NotificationSettingsPage from '@/pages/settings/NotificationSettingsPage';
+import StorageSettingsPage from '@/pages/settings/StorageSettingsPage';
+import ThemeSettingsPage from '@/pages/settings/ThemeSettingsPage';
 import ProfilePage from '@/pages/profile/ProfilePage';
 import LearnersPage from '@/pages/learners/LearnersPage';
 import UsersPage from '@/pages/users/UsersPage';
@@ -145,6 +150,26 @@ export const router = createBrowserRouter([
               {
                 path: 'settings/environment',
                 element: <EnvironmentSettingsPage />,
+              },
+              {
+                path: 'settings/email',
+                element: <EmailSettingsPage />,
+              },
+              {
+                path: 'settings/integrations',
+                element: <IntegrationsSettingsPage />,
+              },
+              {
+                path: 'settings/notifications',
+                element: <NotificationSettingsPage />,
+              },
+              {
+                path: 'settings/storage',
+                element: <StorageSettingsPage />,
+              },
+              {
+                path: 'settings/theme',
+                element: <ThemeSettingsPage />,
               },
               {
                 path: 'profile',

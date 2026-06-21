@@ -32,6 +32,11 @@ import {
   FileText,
   Video,
   Headphones,
+  Mail,
+  Webhook,
+  Bell,
+  HardDrive,
+  Palette,
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { useUIStore } from '@/store/uiStore';
@@ -62,8 +67,13 @@ const coursesItems: { label: string; icon: ComponentType<{ size?: number; classN
 
 const settingsItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
   { label: 'Profile Settings', icon: UserCog, href: '/profile' },
-  { label: 'Payment Settings', icon: Wallet, href: '/settings/payment' },
   { label: 'General Settings', icon: SlidersHorizontal, href: '/settings/general' },
+  { label: 'Email Settings', icon: Mail, href: '/settings/email' },
+  { label: 'Integrations', icon: Webhook, href: '/settings/integrations' },
+  { label: 'Notifications', icon: Bell, href: '/settings/notifications' },
+  { label: 'Storage & CDN', icon: HardDrive, href: '/settings/storage' },
+  { label: 'Theme & Branding', icon: Palette, href: '/settings/theme' },
+  { label: 'Payment Settings', icon: Wallet, href: '/settings/payment' },
   { label: 'Region Settings', icon: Globe, href: '/settings/region' },
   { label: 'System Settings', icon: Cpu, href: '/settings/system' },
   { label: 'Environment Settings', icon: Cloud, href: '/settings/environment' },
