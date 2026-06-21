@@ -77,7 +77,9 @@ const GeneralSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Palette size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Palette size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Branding</CardTitle>
                 <CardDescription>Customize your platform's appearance and identity</CardDescription>
@@ -175,7 +177,9 @@ const GeneralSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Mail size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Mail size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Contact Information</CardTitle>
                 <CardDescription>How users can reach your support team</CardDescription>
@@ -209,7 +213,9 @@ const GeneralSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Globe size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Globe size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>SEO & Metadata</CardTitle>
                 <CardDescription>Control how your platform appears in search results</CardDescription>

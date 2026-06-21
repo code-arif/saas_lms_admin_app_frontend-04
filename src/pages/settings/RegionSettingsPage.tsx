@@ -136,7 +136,9 @@ const RegionSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Globe size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Globe size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Locale</CardTitle>
                 <CardDescription>Set the default language and regional preferences</CardDescription>
@@ -173,7 +175,9 @@ const RegionSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Clock size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Clock size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Date & Time</CardTitle>
                 <CardDescription>Configure date and time formatting preferences</CardDescription>
@@ -250,7 +254,9 @@ const RegionSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <DollarSign size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <DollarSign size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Currency</CardTitle>
                 <CardDescription>Configure default currency and formatting</CardDescription>

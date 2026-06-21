@@ -56,7 +56,9 @@ const EnvironmentSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Cloud size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Cloud size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Environment Overview</CardTitle>
                 <CardDescription>Current deployment environment information</CardDescription>
@@ -148,7 +150,9 @@ const EnvironmentSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <RefreshCw size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <RefreshCw size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Deployment Settings</CardTitle>
                 <CardDescription>Configure deployment automation preferences</CardDescription>

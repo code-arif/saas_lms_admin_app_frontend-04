@@ -89,7 +89,9 @@ const SystemSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Users size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Users size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Registration & Access</CardTitle>
                 <CardDescription>Control tenant registration and access policies</CardDescription>
@@ -138,7 +140,9 @@ const SystemSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Lock size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Lock size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Security</CardTitle>
                 <CardDescription>Configure authentication and security policies</CardDescription>
@@ -198,7 +202,9 @@ const SystemSettingsPage = () => {
         <Card className={maintenanceMode ? 'border-destructive/50' : ''}>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Wrench size={20} className={maintenanceMode ? 'text-destructive' : 'text-primary'} />
+              <div className={`h-9 w-9 rounded-lg ${maintenanceMode ? 'bg-destructive/10' : 'bg-primary/10'} flex items-center justify-center shrink-0`}>
+                <Wrench size={18} className={maintenanceMode ? 'text-destructive' : 'text-primary'} />
+              </div>
               <div>
                 <div className="flex items-center gap-2">
                   <CardTitle>Maintenance</CardTitle>
@@ -245,7 +251,9 @@ const SystemSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Bell size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Bell size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Audit & Logging</CardTitle>
                 <CardDescription>Configure audit trail and log retention</CardDescription>
@@ -292,7 +300,9 @@ const SystemSettingsPage = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Database size={20} className="text-primary" />
+              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Database size={18} className="text-primary" />
+              </div>
               <div>
                 <CardTitle>Backup</CardTitle>
                 <CardDescription>Configure automatic backup settings</CardDescription>
