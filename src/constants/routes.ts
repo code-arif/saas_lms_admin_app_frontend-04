@@ -23,6 +23,7 @@ export const ROUTES = {
   SETTINGS_STORAGE: '/settings/storage',
   SETTINGS_THEME: '/settings/theme',
   SETTINGS_FEATURES: '/settings/features',
+  SETTINGS_SECURITY: '/settings/security',
   USERS: '/users',
   ROLES: '/roles',
   PERMISSIONS: '/permissions',
