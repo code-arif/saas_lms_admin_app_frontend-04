@@ -25,6 +25,9 @@ export const ROUTES = {
   CLASS_VIEW: '/classes/:uuid',
   COURSES: '/courses',
   COURSE_DETAIL: '/courses/:uuid',
+  FORGOT_PASSWORD: '/forgot-password',
+  OTP_VERIFICATION: '/otp-verification',
+  RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
   SUPPORT: '/support',
 } as const;

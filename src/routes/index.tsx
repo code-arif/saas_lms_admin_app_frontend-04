@@ -7,6 +7,9 @@ import GuestRoute from './GuestRoute';
 
 // Pages
 import LoginPage from '@/pages/auth/LoginPage';
+import ForgotPasswordPage from '@/pages/auth/ForgotPasswordPage';
+import OtpVerificationPage from '@/pages/auth/OtpVerificationPage';
+import ResetPasswordPage from '@/pages/auth/ResetPasswordPage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
 import TenantsPage from '@/pages/tenants/TenantsPage';
 import TenantDetailPage from '@/pages/tenants/TenantDetailPage';
@@ -56,6 +59,18 @@ export const router = createBrowserRouter([
               {
                 path: 'login',
                 element: <LoginPage />,
+              },
+              {
+                path: 'forgot-password',
+                element: <ForgotPasswordPage />,
+              },
+              {
+                path: 'otp-verification',
+                element: <OtpVerificationPage />,
+              },
+              {
+                path: 'reset-password',
+                element: <ResetPasswordPage />,
               },
             ],
           },

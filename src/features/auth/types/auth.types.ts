@@ -11,3 +11,19 @@ export interface LoginData {
 }
 
 export type LoginResponse = ApiResponse<LoginData>;
+
+export interface ForgotPasswordCredentials {
+  email: string;
+}
+
+export interface VerifyOtpCredentials {
+  email: string;
+  otp: string;
+}
+
+export interface ResetPasswordCredentials {
+  email: string;
+  otp: string;
+  password: string;
+  password_confirmation: string;
+}
