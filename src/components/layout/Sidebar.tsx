@@ -38,6 +38,7 @@ import {
   HardDrive,
   Palette,
   ToggleLeft,
+  Activity,
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { useUIStore } from '@/store/uiStore';
@@ -76,6 +77,8 @@ const settingsItems: { label: string; icon: ComponentType<{ size?: number; class
   { label: 'Theme & Branding', icon: Palette, href: '/settings/theme' },
   { label: 'Feature Toggles', icon: ToggleLeft, href: '/settings/features' },
   { label: 'Security & Compliance', icon: Shield, href: '/settings/security' },
+  { label: 'Logs & Monitoring', icon: Activity, href: '/settings/logs' },
+  { label: 'Tenant Defaults', icon: Building2, href: '/settings/tenant-defaults' },
   { label: 'Payment Settings', icon: Wallet, href: '/settings/payment' },
   { label: 'Region Settings', icon: Globe, href: '/settings/region' },
   { label: 'System Settings', icon: Cpu, href: '/settings/system' },

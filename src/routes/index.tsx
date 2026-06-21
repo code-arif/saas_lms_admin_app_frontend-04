@@ -32,6 +32,8 @@ import StorageSettingsPage from '@/pages/settings/StorageSettingsPage';
 import ThemeSettingsPage from '@/pages/settings/ThemeSettingsPage';
 import FeatureTogglesSettingsPage from '@/pages/settings/FeatureTogglesSettingsPage';
 import SecuritySettingsPage from '@/pages/settings/SecuritySettingsPage';
+import LogsSettingsPage from '@/pages/settings/LogsSettingsPage';
+import TenantDefaultsSettingsPage from '@/pages/settings/TenantDefaultsSettingsPage';
 import ProfilePage from '@/pages/profile/ProfilePage';
 import LearnersPage from '@/pages/learners/LearnersPage';
 import UsersPage from '@/pages/users/UsersPage';
@@ -180,6 +182,14 @@ export const router = createBrowserRouter([
               {
                 path: 'settings/security',
                 element: <SecuritySettingsPage />,
+              },
+              {
+                path: 'settings/logs',
+                element: <LogsSettingsPage />,
+              },
+              {
+                path: 'settings/tenant-defaults',
+                element: <TenantDefaultsSettingsPage />,
               },
               {
                 path: 'profile',
