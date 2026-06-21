@@ -40,11 +40,13 @@ import {
   ToggleLeft,
   Activity,
 } from 'lucide-react';
+import { Separator } from '@/components/ui/Separator';
 import { cn } from '@/utils/cn';
 import { useUIStore } from '@/store/uiStore';
 
-const classItems: { label: string; href?: string }[] = [
+const classItems: ({ label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string } | 'divider')[] = [
   { label: 'All Classes', href: '/classes' },
+  'divider',
   { label: 'Previous Classes', href: '/classes/previous' },
   { label: 'Running Classes', href: '/classes/running' },
 ];
@@ -59,30 +61,48 @@ const manageTagsItems: { label: string; icon: ComponentType<{ size?: number; cla
   { label: 'Course Categories', icon: BookMarked, href: '/courses/categories' },
 ];
 
-const coursesItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
+const coursesItems: ({ label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string } | 'divider')[] = [
+  // Content
   { label: 'All Courses', icon: Library, href: '/courses' },
   { label: 'Modules', icon: BookMarked, href: '/courses/modules' },
+  'divider',
+  // Assessment
   { label: 'Assignments', icon: FileText, href: '/courses/assignments' },
+  'divider',
+  // Media
   { label: 'Recording', icon: Video, href: '/courses/recording' },
   { label: 'Assets', icon: FolderOpen, href: '/courses/assets' },
 ];
 
-const settingsItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
+const settingsItems: ({ label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string } | 'divider')[] = [
+  // Account
   { label: 'Profile Settings', icon: UserCog, href: '/profile' },
+  'divider',
+  // Platform
   { label: 'General Settings', icon: SlidersHorizontal, href: '/settings/general' },
-  { label: 'Email Settings', icon: Mail, href: '/settings/email' },
-  { label: 'Integrations', icon: Webhook, href: '/settings/integrations' },
-  { label: 'Notifications', icon: Bell, href: '/settings/notifications' },
-  { label: 'Storage & CDN', icon: HardDrive, href: '/settings/storage' },
   { label: 'Theme & Branding', icon: Palette, href: '/settings/theme' },
-  { label: 'Feature Toggles', icon: ToggleLeft, href: '/settings/features' },
-  { label: 'Security & Compliance', icon: Shield, href: '/settings/security' },
-  { label: 'Logs & Monitoring', icon: Activity, href: '/settings/logs' },
-  { label: 'Tenant Defaults', icon: Building2, href: '/settings/tenant-defaults' },
-  { label: 'Payment Settings', icon: Wallet, href: '/settings/payment' },
   { label: 'Region Settings', icon: Globe, href: '/settings/region' },
+  'divider',
+  // Communication
+  { label: 'Email Settings', icon: Mail, href: '/settings/email' },
+  { label: 'Notifications', icon: Bell, href: '/settings/notifications' },
+  'divider',
+  // Development
+  { label: 'Integrations', icon: Webhook, href: '/settings/integrations' },
+  { label: 'Storage & CDN', icon: HardDrive, href: '/settings/storage' },
+  'divider',
+  // System
   { label: 'System Settings', icon: Cpu, href: '/settings/system' },
   { label: 'Environment Settings', icon: Cloud, href: '/settings/environment' },
+  { label: 'Security & Compliance', icon: Shield, href: '/settings/security' },
+  { label: 'Logs & Monitoring', icon: Activity, href: '/settings/logs' },
+  'divider',
+  // Management
+  { label: 'Tenant Defaults', icon: Building2, href: '/settings/tenant-defaults' },
+  { label: 'Feature Toggles', icon: ToggleLeft, href: '/settings/features' },
+  'divider',
+  // Monetization
+  { label: 'Payment Settings', icon: Wallet, href: '/settings/payment' },
 ];
 
 const routeGroups = [
@@ -141,7 +161,7 @@ const Sidebar = () => {
     DropdownIcon: ComponentType<{ size?: number; className?: string }>,
     isOpen: boolean,
     onToggle: () => void,
-    items: { label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string }[]
+    items: ({ label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string } | 'divider')[]
   ) => {
     if (!collapsed) {
       return (
@@ -164,8 +184,10 @@ const Sidebar = () => {
           </button>
           {isOpen && (
             <div className="ml-8 mt-1 space-y-0.5">
-              {items.map((item) =>
-                item.href ? (
+              {items.map((item, idx) =>
+                item === 'divider' ? (
+                  <Separator key={`div-${idx}`} className="my-1.5" />
+                ) : item.href ? (
                   <Link
                     key={item.label}
                     to={item.href}
