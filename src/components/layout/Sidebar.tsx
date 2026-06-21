@@ -161,14 +161,20 @@ const Sidebar = () => {
     DropdownIcon: ComponentType<{ size?: number; className?: string }>,
     isOpen: boolean,
     onToggle: () => void,
-    items: ({ label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string } | 'divider')[]
+    items: ({ label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string } | 'divider')[],
+    isActive = false
   ) => {
     if (!collapsed) {
       return (
         <div>
           <button
             onClick={onToggle}
-            className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            className={cn(
+              'flex items-center justify-between w-full px-3 py-2 rounded-lg transition-colors',
+              isActive
+                ? 'bg-primary/10 text-primary font-medium'
+                : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+            )}
           >
             <div className="flex items-center gap-3">
               <DropdownIcon size={20} className="shrink-0" />
@@ -231,7 +237,14 @@ const Sidebar = () => {
     }
 
     return (
-      <button className="flex items-center justify-center px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+      <button
+        className={cn(
+          'flex items-center justify-center px-3 py-2 w-full rounded-lg transition-colors',
+          isActive
+            ? 'bg-primary text-primary-foreground'
+            : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+        )}
+      >
         <DropdownIcon size={20} className="shrink-0" />
       </button>
     );
@@ -295,12 +308,13 @@ const Sidebar = () => {
                   }}
                   className={cn(
                     'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
+                    collapsed && 'justify-center w-full',
                     isActive
                       ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                   )}
                 >
-                  <item.icon size={20} />
+                  <item.icon size={20} className="shrink-0" />
                   {!collapsed && <span>{item.label}</span>}
                 </Link>
               );
@@ -330,6 +344,7 @@ const Sidebar = () => {
                   }}
                   className={cn(
                     'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
+                    collapsed && 'justify-center w-full',
                     isActive
                       ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:bg-muted hover:text-foreground'
@@ -341,7 +356,11 @@ const Sidebar = () => {
               ) : (
                 <button
                   key={item.label}
-                  className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                  className={cn(
+                    'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
+                    collapsed && 'justify-center w-full',
+                    'text-muted-foreground hover:bg-muted hover:text-foreground'
+                  )}
                 >
                   <item.icon size={20} className="shrink-0" />
                   {!collapsed && <span>{item.label}</span>}
@@ -358,7 +377,7 @@ const Sidebar = () => {
 
           {/* Bottom section - Settings pinned to bottom */}
           <div className="border-t shrink-0 p-4 space-y-2">
-            {renderDropdown('Settings', Settings, settingsOpen, () => setSettingsOpen(!settingsOpen), settingsItems)}
+            {renderDropdown('Settings', Settings, settingsOpen, () => setSettingsOpen(!settingsOpen), settingsItems, location.pathname.startsWith('/profile') || location.pathname.startsWith('/settings'))}
           </div>
         </div>
       </aside>
