@@ -8,7 +8,7 @@ interface ThemeState {
   setTheme: (theme: ThemeMode) => void;
 }
 
-const TRANSITION_DURATION = 400;
+const TRANSITION_DURATION = 500;
 
 let _transitioning = false;
 let _transitionTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -37,13 +37,17 @@ export const useThemeStore = create<ThemeState>()(
 export function startThemeTransition() {
   if (_transitioning) return;
   _transitioning = true;
-  document.documentElement.classList.add('theme-transitioning');
+  const html = document.documentElement;
+  // Capture current background before any theme variables change
+  html.style.setProperty('--theme-overlay-color', getComputedStyle(document.body).backgroundColor);
+  html.classList.add('theme-transitioning');
   if (_transitionTimeout) clearTimeout(_transitionTimeout);
   _transitionTimeout = setTimeout(() => {
-    document.documentElement.classList.remove('theme-transitioning');
+    html.classList.remove('theme-transitioning');
+    html.style.removeProperty('--theme-overlay-color');
     _transitioning = false;
     _transitionTimeout = null;
-  }, TRANSITION_DURATION + 50);
+  }, TRANSITION_DURATION + 100);
 }
 
 export function isThemeTransitioning() {
