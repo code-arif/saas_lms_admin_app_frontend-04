@@ -29,10 +29,10 @@ export interface CourseCategoryListParams {
 export interface CourseCategoryFormData {
   name: string;
   slug: string;
-  description?: string;
-  icon_url?: string;
-  color?: string;
-  parent_id?: number | null;
-  sort_order?: number;
-  is_active?: boolean;
+  description: string | null;
+  icon_url: string | null;
+  color: string | null;
+  parent_id: number | null;
+  sort_order: number;
+  is_active: boolean;
 }

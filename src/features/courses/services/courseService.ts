@@ -274,6 +274,7 @@ export const courseService = {
       students_enrolled: 0,
       rating: 0,
       is_active: true,
+      is_featured: data.is_featured ?? false,
       instructor_bio: '',
       description: data.description || '',
       level: (data.level || 'beginner') as Course['level'],

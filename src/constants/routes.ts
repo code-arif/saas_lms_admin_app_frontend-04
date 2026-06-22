@@ -26,7 +26,6 @@ export const ROUTES = {
   SETTINGS_SECURITY: '/settings/security',
   SETTINGS_LOGS: '/settings/logs',
   SETTINGS_TENANT_DEFAULTS: '/settings/tenant-defaults',
-  SETTINGS_TENANT_DEFAULTS: '/settings/tenant-defaults',
   USERS: '/users',
   ROLES: '/roles',
   PERMISSIONS: '/permissions',

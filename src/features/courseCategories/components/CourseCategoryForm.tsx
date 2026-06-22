@@ -24,8 +24,8 @@ const courseCategorySchema = z.object({
   icon_url: z.string().nullable(),
   color: z.string().nullable(),
   parent_id: z.number().nullable(),
-  sort_order: z.number().min(0).default(0),
-  is_active: z.boolean().default(true),
+  sort_order: z.number().min(0),
+  is_active: z.boolean(),
 });
 
 type CourseCategoryFormValues = z.infer<typeof courseCategorySchema>;
@@ -33,7 +33,7 @@ type CourseCategoryFormValues = z.infer<typeof courseCategorySchema>;
 interface CourseCategoryFormProps {
   initialData?: CourseCategory | null;
   parentOptions?: { label: string; value: number | null }[];
-  onSubmit: (data: CourseCategoryFormData) => void;
+  onSubmit: (data: CourseCategoryFormValues) => void;
   isLoading?: boolean;
   mode?: 'create' | 'edit';
   isDropdownLoading?: boolean;
@@ -170,7 +170,7 @@ const CourseCategoryForm = ({
               )}
             </SelectContent>
           </Select>
-          {parentOptions.length === 0 && !isTreeLoading && (
+          {parentOptions.length === 0 && !isDropdownLoading && (
             <p className="text-xs text-muted-foreground">
               Create other categories first to set a parent
             </p>

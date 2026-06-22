@@ -499,7 +499,21 @@ const ClassesPage = () => {
         setClasses((prev) =>
           prev.map((c) =>
             c.uuid === editingClass.uuid
-              ? { ...c, ...data, tags: data.tags.split(',').map((t) => t.trim()).filter(Boolean), updated_at: new Date().toISOString() }
+              ? {
+                  ...c,
+                  title: data.title,
+                  description: data.description,
+                  category: data.category as ClassItem['category'],
+                  level: data.level as ClassItem['level'],
+                  status: data.status as ClassItem['status'],
+                  instructor: data.instructor,
+                  duration_minutes: data.duration_minutes,
+                  lessons_count: data.lessons_count,
+                  price: data.price,
+                  tags: data.tags.split(',').map((t) => t.trim()).filter(Boolean),
+                  start_date: data.start_date,
+                  updated_at: new Date().toISOString(),
+                }
               : c
           )
         );

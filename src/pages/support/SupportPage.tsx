@@ -6,7 +6,7 @@ const SupportPage = () => {
     <div className="space-y-4">
       <PageTitle
         title="Tenant Support"
-        description="Manage and respond to tenant support requests"
+        subtitle="Manage and respond to tenant support requests"
       />
       <SupportChat />
     </div>

@@ -343,7 +343,20 @@ const CoursesPage = () => {
     setTimeout(() => {
       if (editingCourse) {
         setCourses((prev) => prev.map((c) => c.uuid === editingCourse.uuid ? {
-          ...c, ...data, skills: data.skills.split(',').map((s) => s.trim()).filter(Boolean),
+          ...c,
+          title: data.title,
+          slug: data.slug,
+          description: data.description,
+          short_description: data.short_description,
+          category: data.category,
+          level: data.level as Course['level'],
+          instructor: data.instructor,
+          price: data.price,
+          duration_hours: data.duration_hours,
+          lessons_count: data.lessons_count,
+          language: data.language,
+          thumbnail_url: data.thumbnail_url,
+          skills: data.skills.split(',').map((s) => s.trim()).filter(Boolean),
           prerequisites: data.prerequisites.split(',').map((s) => s.trim()).filter(Boolean),
           tags: data.tags.split(',').map((s) => s.trim()).filter(Boolean),
           updated_at: new Date().toISOString(),

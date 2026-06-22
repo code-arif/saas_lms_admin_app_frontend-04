@@ -43,7 +43,7 @@ const CourseCategoriesPage = () => {
   const toggleMutation = useToggleCourseCategory();
 
   const categories = response?.data || [];
-  const pagination = response?.pagination;
+  const pagination = response?.meta;
 
   // Build parent options from the dropdown API (all categories, no pagination)
   // This is more reliable than the tree endpoint which may not exist on the backend
