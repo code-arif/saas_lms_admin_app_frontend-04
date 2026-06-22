@@ -12,7 +12,16 @@ import {
 } from '@/components/ui/Select';
 import { formatDate, formatDateTime } from '@/utils/formatDate';
 import { cn } from '@/utils/cn';
-import { Search, Edit, Trash2, Layers } from 'lucide-react';
+import { Search, Edit, Trash2, Layers, Folder } from 'lucide-react';
+import { Skeleton } from '@/components/ui/Skeleton';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/Table';
 import type { CourseCategory } from '../types/courseCategory.types';
 
 interface CourseCategoryTableProps {
@@ -60,12 +69,12 @@ const CourseCategoryTable = ({
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
           ) : (
-            item.color && (
-              <span
-                className="inline-block h-4 w-4 rounded-full shrink-0"
-                style={{ backgroundColor: item.color }}
-              />
-            )
+            <div
+              className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-muted"
+              style={item.color ? { backgroundColor: item.color + '20', color: item.color } : undefined}
+            >
+              <Folder className="h-3.5 w-3.5" />
+            </div>
           )}
           <div className="flex items-center gap-2">
             {item.parent_id && (
@@ -212,15 +221,80 @@ const CourseCategoryTable = ({
         </Select>
       </div>
 
-      <DataTable
-        columns={columns}
-        data={categories}
-        totalCount={totalCount}
-        page={page}
-        perPage={perPage}
-        onPageChange={onPageChange}
-        isLoading={isLoading}
-      />
+      {isLoading ? (
+        <div className="space-y-4">
+          {/* Search & Filter skeleton */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+            <Skeleton className="h-10 flex-1 max-w-full sm:max-w-sm rounded-md" />
+            <Skeleton className="h-10 w-full sm:w-[160px] rounded-md" />
+          </div>
+
+          {/* Table skeleton */}
+          <div className="rounded-md border overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead className="w-[150px]">Parent</TableHead>
+                  <TableHead className="w-[110px] text-center">Subcategories</TableHead>
+                  <TableHead className="w-[70px] text-center">Order</TableHead>
+                  <TableHead className="w-[115px]">Status</TableHead>
+                  <TableHead className="w-[150px]">Created</TableHead>
+                  <TableHead className="w-[150px]">Updated</TableHead>
+                  <TableHead className="w-[100px]">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <TableRow key={i}>
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <Skeleton className="h-5 w-5 shrink-0 rounded" />
+                        <Skeleton className="h-4 w-32" />
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-20" />
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <div className="flex justify-center">
+                        <Skeleton className="h-5 w-8 rounded-md" />
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Skeleton className="h-4 w-6 mx-auto" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-6 w-16 rounded-md" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-24" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-24" />
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-1">
+                        <Skeleton className="h-8 w-8 rounded-md" />
+                        <Skeleton className="h-8 w-8 rounded-md" />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      ) : (
+        <DataTable
+          columns={columns}
+          data={categories}
+          totalCount={totalCount}
+          page={page}
+          perPage={perPage}
+          onPageChange={onPageChange}
+        />
+      )}
     </div>
   );
 };

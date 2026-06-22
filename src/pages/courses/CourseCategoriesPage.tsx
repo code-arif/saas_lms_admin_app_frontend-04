@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import PageTitle from '@/components/common/PageTitle';
-import LoadingSpinner from '@/components/common/LoadingSpinner';
 import ConfirmDialog from '@/components/common/ConfirmDialog';
 import { Button } from '@/components/ui/Button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/Dialog';
@@ -89,10 +88,6 @@ const CourseCategoriesPage = () => {
       });
     }
   };
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   return (
     <div className="space-y-6">
