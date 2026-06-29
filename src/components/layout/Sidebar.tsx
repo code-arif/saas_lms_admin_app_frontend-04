@@ -31,7 +31,6 @@ import {
   BookMarked,
   FileText,
   Video,
-  Headphones,
   Mail,
   Webhook,
   Bell,
@@ -39,6 +38,8 @@ import {
   Palette,
   ToggleLeft,
   Activity,
+  ScrollText,
+  LogIn,
 } from 'lucide-react';
 import { Separator } from '@/components/ui/Separator';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/Tooltip';
@@ -73,6 +74,10 @@ const coursesItems: ({ label: string; icon?: ComponentType<{ size?: number; clas
   // Media
   { label: 'Recording', icon: Video, href: '/courses/recording' },
   { label: 'Assets', icon: FolderOpen, href: '/courses/assets' },
+];
+
+const auditItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
+  { label: 'Login Audit', icon: LogIn, href: '/audit/login' },
 ];
 
 const settingsItems: ({ label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string } | 'divider')[] = [
@@ -111,6 +116,7 @@ const routeGroups = [
   { name: 'manageTags', paths: ['/courses/categories'] },
   { name: 'courses', paths: ['/courses'] },
   { name: 'userMgmt', paths: ['/users', '/roles', '/permissions'] },
+  { name: 'audit', paths: ['/audit'] },
   { name: 'settings', paths: ['/profile', '/settings'] },
 ] as const;
 
@@ -128,6 +134,7 @@ const Sidebar = () => {
   const [userMgmtOpen, setUserMgmtOpen] = useState(false);
   const [manageTagsOpen, setManageTagsOpen] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
+  const [auditOpen, setAuditOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   // Auto-expand only the active dropdown when navigating — collapse the rest
@@ -137,6 +144,7 @@ const Sidebar = () => {
     setManageTagsOpen(activeGroup === 'manageTags');
     setCoursesOpen(activeGroup === 'courses');
     setUserMgmtOpen(activeGroup === 'userMgmt');
+    setAuditOpen(activeGroup === 'audit');
     setSettingsOpen(activeGroup === 'settings');
   }, [location.pathname]);
 
@@ -148,7 +156,6 @@ const Sidebar = () => {
     { label: 'Coupons', icon: Tag, href: '/coupons' },
     { label: 'Campaigns', icon: Megaphone, href: '/campaigns' },
     { label: 'Analytics', icon: BarChart3, href: '/analytics' },
-  { label: 'Support', icon: Headphones, href: '/support' },
   ];
 
   const extraItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
@@ -395,6 +402,9 @@ const Sidebar = () => {
 
             {/* User Management dropdown */}
             {renderDropdown('User Management', UserCog, userMgmtOpen, () => setUserMgmtOpen(!userMgmtOpen), userManagementItems)}
+
+            {/* Audit dropdown */}
+            {renderDropdown('Audit', ScrollText, auditOpen, () => setAuditOpen(!auditOpen), auditItems)}
           </nav>
 
           {/* Bottom section - Settings pinned to bottom */}

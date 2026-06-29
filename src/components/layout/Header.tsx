@@ -1,4 +1,4 @@
-import { Bell, Search, User, Moon, Sun, Menu, Settings, LogOut } from 'lucide-react';
+import { Bell, Search, User, Moon, Sun, Menu, Settings, LogOut, Headphones } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/features/auth/store/authStore';
@@ -58,6 +58,17 @@ const Header = () => {
           <Sun size={18} className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon size={18} className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          asChild
+        >
+          <Link to="/support">
+            <Headphones size={18} />
+            <span className="sr-only">Support</span>
+          </Link>
         </Button>
 
         <DropdownMenu>

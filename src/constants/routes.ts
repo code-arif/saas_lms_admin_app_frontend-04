@@ -39,4 +39,5 @@ export const ROUTES = {
   RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
   SUPPORT: '/support',
+  LOGIN_AUDIT: '/audit/login',
 } as const;

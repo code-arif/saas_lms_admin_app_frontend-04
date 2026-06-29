@@ -48,6 +48,7 @@ import CoursesPage from '@/pages/courses/CoursesPage';
 import CourseDetailPage from '@/pages/courses/CourseDetailPage';
 import CourseCategoriesPage from '@/pages/courses/CourseCategoriesPage';
 import SupportPage from '@/pages/support/SupportPage';
+import LoginAuditPage from '@/pages/audit/LoginAuditPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -246,6 +247,10 @@ export const router = createBrowserRouter([
               {
                 path: 'support',
                 element: <SupportPage />,
+              },
+              {
+                path: 'audit/login',
+                element: <LoginAuditPage />,
               },
             ],
           },
