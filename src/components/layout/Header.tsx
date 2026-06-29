@@ -1,4 +1,5 @@
-import { Bell, Search, User, Moon, Sun, Menu, Settings, LogOut, Headphones } from 'lucide-react';
+import { useEffect, useState, useCallback } from 'react';
+import { Bell, Search, User, Moon, Sun, Menu, Settings, LogOut, Headphones, Command as CommandIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/features/auth/store/authStore';
@@ -12,13 +13,28 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/DropdownMenu';
+import CommandPalette from '@/features/search/components/CommandPalette';
 
 const Header = () => {
+  const [searchOpen, setSearchOpen] = useState(false);
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
   const { theme, setTheme } = useTheme();
   const toggleSidebar = useUIStore((state) => state.toggleSidebar);
   const navigate = useNavigate();
+
+  // Keyboard shortcut: Cmd+K / Ctrl+K
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      setSearchOpen((prev) => !prev);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   const handleLogout = () => {
     logout();
@@ -26,25 +42,32 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-card px-3 md:px-8">
-      <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden shrink-0"
-          onClick={toggleSidebar}
-        >
-          <Menu size={20} />
-        </Button>
-        <div className="hidden sm:flex flex-1 max-w-md items-center gap-2 px-3 py-1.5 rounded-md bg-muted border">
-          <Search size={18} className="text-muted-foreground shrink-0" />
-          <input
-            type="text"
-            placeholder="Search tenants, plans, coupons..."
-            className="bg-transparent border-none outline-none text-sm w-full min-w-0"
-          />
+    <>
+      <CommandPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-card px-3 md:px-8">
+        <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden shrink-0"
+            onClick={toggleSidebar}
+          >
+            <Menu size={20} />
+          </Button>
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="hidden sm:flex flex-1 max-w-md items-center gap-2 px-3 py-1.5 rounded-md bg-muted border hover:border-muted-foreground/30 transition-colors text-left"
+          >
+            <Search size={18} className="text-muted-foreground shrink-0" />
+            <span className="text-sm text-muted-foreground/60 flex-1 min-w-0">
+              Search pages, settings, and features...
+            </span>
+            <kbd className="hidden md:inline-flex items-center gap-1 px-1.5 py-0.5 rounded border bg-background text-[10px] font-medium text-muted-foreground/50 shrink-0">
+              <CommandIcon size={11} />
+              K
+            </kbd>
+          </button>
         </div>
-      </div>
 
       <div className="flex items-center gap-1 md:gap-4 shrink-0">
         <ThemeSwitcher />
@@ -141,6 +164,7 @@ const Header = () => {
         </DropdownMenu>
       </div>
     </header>
+    </>
   );
 };
 
