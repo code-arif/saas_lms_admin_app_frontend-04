@@ -1,13 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 import {
-  AreaChart,
-  Area,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+import { TrendingUp } from 'lucide-react';
 
 interface RevenueChartProps {
   data: Array<{ month: string; amount: number }>;
@@ -20,13 +22,22 @@ const RevenueChart = ({ data }: RevenueChartProps) => {
   }));
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Revenue Overview</CardTitle>
+    <Card className="h-full">
+      <CardHeader className="pb-0">
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-base">Earnings</CardTitle>
+            <p className="text-xs text-muted-foreground mt-0.5">Monthly revenue overview</p>
+          </div>
+          <Button variant="ghost" size="sm" className="text-xs gap-1 text-muted-foreground">
+            <TrendingUp className="h-3.5 w-3.5" />
+            Report
+          </Button>
+        </div>
       </CardHeader>
-      <CardContent className="h-[300px]">
+      <CardContent className="h-[300px] pt-6">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={chartData}>
+          <BarChart data={chartData} barCategoryGap="20%">
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
             <XAxis
               dataKey="month"
@@ -41,23 +52,16 @@ const RevenueChart = ({ data }: RevenueChartProps) => {
               tickFormatter={(value) => `$${value}`}
             />
             <Tooltip
-              contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))' }}
+              contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
               formatter={(value) => [`$${Number(value)}`, 'Revenue']}
+              cursor={{ fill: 'hsl(var(--muted))' }}
             />
-            <defs>
-              <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#10b981" stopOpacity={0.4} />
-                <stop offset="100%" stopColor="#10b981" stopOpacity={0.05} />
-              </linearGradient>
-            </defs>
-            <Area
-              type="monotone"
+            <Bar
               dataKey="amount"
-              stroke="#10b981"
-              fill="url(#revenueGradient)"
-              strokeWidth={3}
+              fill="hsl(var(--theme-accent))"
+              radius={[6, 6, 0, 0]}
             />
-          </AreaChart>
+          </BarChart>
         </ResponsiveContainer>
       </CardContent>
     </Card>
