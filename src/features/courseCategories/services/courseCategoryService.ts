@@ -21,15 +21,15 @@ export const courseCategoryService = {
   },
 
   create: async (data: CourseCategoryFormData): Promise<ApiResponse<CourseCategory>> => {
-    return api.post('/course-categories', data);
+    return api.post('/course-categories/store', data);
   },
 
   update: async (uuid: string, data: Partial<CourseCategoryFormData>): Promise<ApiResponse<CourseCategory>> => {
-    return api.put(`/course-categories/${uuid}`, data);
+    return api.put(`/course-categories/${uuid}/update`, data);
   },
 
   delete: async (uuid: string): Promise<ApiResponse> => {
-    return api.delete(`/course-categories/${uuid}`);
+    return api.delete(`/course-categories/${uuid}/delete`);
   },
 
   toggleActive: async (uuid: string): Promise<ApiResponse<CourseCategory>> => {
