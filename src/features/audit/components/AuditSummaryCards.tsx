@@ -40,7 +40,7 @@ const SummaryCard = ({
 }) => {
   const Icon = iconMap[iconName] || Info;
   return (
-    <div className="flex items-center gap-3 p-3 rounded-xl bg-card shadow-sm dark:bg-muted dark:shadow-none hover:shadow-md transition-shadow duration-200 cursor-default">
+    <div className="flex items-center gap-3 p-3 rounded bg-card shadow-sm dark:bg-muted dark:shadow-none hover:shadow-md transition-shadow duration-200 cursor-default">
       <div className={cn("p-2 rounded-full", color)}>
         <Icon className="h-4 w-4" />
       </div>
@@ -63,7 +63,7 @@ export const AuditSummaryCards = ({ summaryTotal, summary, isLoading }: AuditSum
     return (
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className="h-[72px] rounded-xl bg-card shadow-sm dark:bg-muted dark:shadow-none p-3">
+          <div key={i} className="h-[72px] rounded bg-card shadow-sm dark:bg-muted dark:shadow-none p-3">
             <Skeleton className="h-3 w-20 mb-2" />
             <Skeleton className="h-6 w-12" />
           </div>

@@ -53,7 +53,7 @@ export const AuditFilters = ({
   onResetPage,
 }: AuditFiltersProps) => {
   return (
-    <div className={cn("space-y-3 p-4 rounded-xl bg-card shadow-sm dark:bg-muted dark:shadow-none", !filtersOpen && "hidden md:block")}>
+    <div className={cn("space-y-3 p-4 rounded bg-card shadow-sm dark:bg-muted dark:shadow-none", !filtersOpen && "hidden md:block")}>
       {/* Search & quick filters */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">

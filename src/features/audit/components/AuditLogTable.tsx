@@ -180,7 +180,7 @@ export const AuditLogTable = ({ logs, isLoading, hasActiveFilters, onViewDetail,
   ];
 
   return (
-    <div className="rounded-xl bg-card shadow-sm dark:bg-muted dark:shadow-none overflow-x-auto">
+    <div className="rounded bg-card shadow-sm dark:bg-muted dark:shadow-none overflow-x-auto">
       <Table>
         <TableHeader>
           <TableRow>

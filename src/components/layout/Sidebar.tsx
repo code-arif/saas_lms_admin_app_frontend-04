@@ -77,7 +77,7 @@ const coursesItems: ({ label: string; icon?: ComponentType<{ size?: number; clas
 ];
 
 const auditItems: { label: string; icon: ComponentType<{ size?: number; className?: string }>; href?: string }[] = [
-  { label: 'Login Audit', icon: LogIn, href: '/audit/login' },
+  { label: 'Audit', icon: LogIn, href: '/audit/login' },
 ];
 
 const settingsItems: ({ label: string; icon?: ComponentType<{ size?: number; className?: string }>; href?: string } | 'divider')[] = [
